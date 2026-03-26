@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BidSquire — Find Underpriced Auction Items Before Anyone Else</title>
+<meta name="description" content="BidSquire uses AI to scan local auctions and show you exactly what items are worth before you bid. 500 free credits. No credit card required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0e17;
+  --bg-card: #111827;
+  --bg-card-hover: #1a2236;
+  --surface: #1e293b;
+  --border: #2a3548;
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --accent: #22d3ee;
+  --accent-glow: rgba(34, 211, 238, 0.15);
+  --green: #4ade80;
+  --green-glow: rgba(74, 222, 128, 0.12);
+  --red: #f87171;
+  --gold: #fbbf24;
+  --gold-glow: rgba(251, 191, 36, 0.1);
+  --cta: #3b82f6;
+  --cta-hover: #2563eb;
+  --font: 'DM Sans', sans-serif;
+  --mono: 'Space Mono', monospace;
+  --max-w: 1120px;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ===== UTILITY ===== */
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+.sr-only { position: absolute; width: 1px; height: 1px; clip: rect(0,0,0,0); overflow: hidden; }
+
+/* ===== NAV ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(10, 14, 23, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 0;
+}
+nav .container {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo {
+  font-weight: 700; font-size: 20px; letter-spacing: -0.5px;
+  color: var(--text);
+  text-decoration: none;
+}
+.logo span { color: var(--accent); }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--cta); color: white;
+  padding: 10px 22px; border-radius: 8px;
+  font-size: 14px; font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+.nav-cta:hover { background: var(--cta-hover); transform: translateY(-1px); }
+
+/* ===== HERO ===== */
+.hero {
+  padding: 140px 0 80px;
+  position: relative;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 600px;
+  background: radial-gradient(ellipse, rgba(34, 211, 238, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent-glow); border: 1px solid rgba(34,211,238,0.2);
+  padding: 6px 14px; border-radius: 100px;
+  font-size: 13px; font-weight: 500; color: var(--accent);
+  margin-bottom: 24px;
+}
+.hero-badge::before {
+  content: ''; width: 6px; height: 6px;
+  background: var(--accent); border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.hero h1 {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  margin-bottom: 20px;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.hero-sub {
+  font-size: 18px;
+  color: var(--text-muted);
+  max-width: 480px;
+  margin-bottom: 32px;
+  line-height: 1.65;
+}
+.hero-cta-row {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--cta); color: white;
+  padding: 16px 32px; border-radius: 10px;
+  font-size: 17px; font-weight: 600;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 24px rgba(59,130,246,0.25);
+}
+.btn-primary:hover {
+  background: var(--cta-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(59,130,246,0.35);
+}
+.btn-primary svg { width: 18px; height: 18px; }
+.hero-meta {
+  font-size: 13px; color: var(--text-dim);
+}
+.hero-meta strong { color: var(--text-muted); font-weight: 500; }
+
+/* ===== DEMO CARD ===== */
+.demo-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+}
+.demo-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.demo-header-title {
+  font-size: 13px; font-weight: 600; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.demo-badge-live {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 700; color: var(--green);
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.demo-badge-live::before {
+  content: ''; width: 6px; height: 6px;
+  background: var(--green); border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+.demo-item {
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.demo-item:last-child { border-bottom: none; }
+.demo-item-name {
+  font-size: 14px; font-weight: 600; color: var(--text);
+  margin-bottom: 4px;
+}
+.demo-item-source {
+  font-size: 12px; color: var(--text-dim); margin-bottom: 12px;
+}
+.demo-prices {
+  display: flex; align-items: center; gap: 12px;
+}
+.demo-price-label {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
+  color: var(--text-dim); margin-bottom: 2px;
+}
+.demo-price-bid {
+  font-family: var(--mono); font-size: 18px; font-weight: 700; color: var(--text);
+}
+.demo-price-value {
+  font-family: var(--mono); font-size: 18px; font-weight: 700; color: var(--green);
+}
+.demo-arrow {
+  color: var(--text-dim); font-size: 18px;
+}
+.demo-profit {
+  margin-left: auto;
+  background: var(--green-glow);
+  border: 1px solid rgba(74,222,128,0.2);
+  padding: 4px 10px; border-radius: 6px;
+  font-family: var(--mono); font-size: 13px; font-weight: 700;
+  color: var(--green);
+}
+
+/* ===== SOCIAL PROOF BAR ===== */
+.proof-bar {
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.proof-stats {
+  display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;
+  text-align: center;
+}
+.proof-stat-num {
+  font-family: var(--mono); font-size: 28px; font-weight: 700;
+  color: var(--accent);
+}
+.proof-stat-label {
+  font-size: 14px; color: var(--text-muted); margin-top: 4px;
+}
+
+/* ===== HOW IT WORKS ===== */
+.how {
+  padding: 100px 0;
+}
+.section-label {
+  font-size: 13px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 1.5px; color: var(--accent);
+  margin-bottom: 12px;
+}
+.section-title {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700; letter-spacing: -1px;
+  margin-bottom: 16px;
+}
+.section-sub {
+  font-size: 17px; color: var(--text-muted);
+  max-width: 560px; margin-bottom: 56px;
+}
+.steps-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+}
+.step-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  position: relative;
+  transition: border-color 0.3s, transform 0.2s;
+}
+.step-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+.step-num {
+  font-family: var(--mono);
+  font-size: 48px; font-weight: 700;
+  color: rgba(34, 211, 238, 0.12);
+  position: absolute; top: 16px; right: 20px;
+}
+.step-icon {
+  width: 48px; height: 48px;
+  background: var(--accent-glow);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+  color: var(--accent);
+}
+.step-title {
+  font-size: 18px; font-weight: 700; margin-bottom: 10px;
+}
+.step-desc {
+  font-size: 15px; color: var(--text-muted); line-height: 1.65;
+}
+
+/* ===== DEAL EXAMPLE ===== */
+.deal-section {
+  padding: 80px 0 100px;
+}
+.deal-showcase {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 48px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+}
+.deal-visual {
+  position: relative;
+}
+.deal-item-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 24px;
+}
+.deal-item-tag {
+  display: inline-block;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+  background: var(--gold-glow); border: 1px solid rgba(251,191,36,0.2);
+  color: var(--gold); padding: 4px 10px; border-radius: 100px;
+  margin-bottom: 16px;
+}
+.deal-item-title {
+  font-size: 20px; font-weight: 700; margin-bottom: 8px;
+}
+.deal-item-auction {
+  font-size: 13px; color: var(--text-dim); margin-bottom: 20px;
+}
+.deal-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+}
+.deal-row-label { font-size: 14px; color: var(--text-muted); }
+.deal-row-val { font-family: var(--mono); font-size: 16px; font-weight: 700; }
+.deal-row-val.bid { color: var(--text); }
+.deal-row-val.market { color: var(--green); }
+.deal-row-val.profit { color: var(--accent); }
+
+.deal-text h3 {
+  font-size: 28px; font-weight: 700; letter-spacing: -0.5px;
+  margin-bottom: 16px;
+}
+.deal-text p {
+  font-size: 16px; color: var(--text-muted); line-height: 1.7;
+  margin-bottom: 24px;
+}
+.deal-text ul {
+  list-style: none; padding: 0; margin-bottom: 32px;
+}
+.deal-text li {
+  font-size: 15px; color: var(--text-muted);
+  padding: 8px 0; padding-left: 28px;
+  position: relative;
+}
+.deal-text li::before {
+  content: '✓';
+  position: absolute; left: 0;
+  color: var(--green); font-weight: 700;
+}
+
+/* ===== PRICING TEASER ===== */
+.pricing-teaser {
+  padding: 80px 0;
+  text-align: center;
+}
+.pricing-card {
+  max-width: 520px; margin: 0 auto;
+  background: var(--bg-card);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 48px 40px;
+  position: relative;
+  box-shadow: 0 0 60px var(--accent-glow);
+}
+.pricing-flag {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  background: var(--accent); color: var(--bg);
+  font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+  padding: 6px 20px; border-radius: 100px;
+}
+.pricing-title {
+  font-size: 32px; font-weight: 700; margin-top: 16px; margin-bottom: 8px;
+}
+.pricing-desc {
+  font-size: 16px; color: var(--text-muted); margin-bottom: 32px;
+}
+.pricing-perks {
+  list-style: none; padding: 0; margin-bottom: 32px;
+  text-align: left; max-width: 340px; margin-left: auto; margin-right: auto;
+}
+.pricing-perks li {
+  font-size: 15px; color: var(--text-muted);
+  padding: 10px 0; padding-left: 28px; position: relative;
+}
+.pricing-perks li::before {
+  content: '✓'; position: absolute; left: 0;
+  color: var(--green); font-weight: 700;
+}
+.pricing-note {
+  font-size: 13px; color: var(--text-dim); margin-top: 16px;
+}
+
+/* ===== FINAL CTA ===== */
+.final-cta {
+  padding: 80px 0 120px;
+  text-align: center;
+}
+.final-cta h2 {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700; letter-spacing: -1px;
+  margin-bottom: 16px;
+}
+.final-cta p {
+  font-size: 18px; color: var(--text-muted);
+  max-width: 500px; margin: 0 auto 32px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 0;
+  text-align: center;
+  font-size: 13px; color: var(--text-dim);
+}
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .hero { padding: 110px 0 60px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .deal-showcase { grid-template-columns: 1fr; padding: 28px; }
+  .proof-stats { gap: 32px; }
+  .pricing-card { padding: 36px 24px; }
+  .hero-cta-row { flex-direction: column; align-items: stretch; }
+  .btn-primary { justify-content: center; }
+}
+
+/* ===== ANIMATIONS ===== */
+.fade-up {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-up.visible {
+  opacity: 1; transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <a href="#" class="logo">Bid<span>Squire</span></a>
+    <a href="https://onboarding.bidsquire.com/signup" class="nav-cta">
+      Start Free
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="fade-up">
+        <div class="hero-badge">The only AI auction tool with expert verification</div>
+        <h1>Know what it's <em>really worth</em> before you bid</h1>
+        <p class="hero-sub">BidSquire scans local auction listings and cross-references millions of sold records to show you the real market value — so you buy low with confidence.</p>
+        <div class="hero-cta-row">
+          <a href="https://onboarding.bidsquire.com/signup" class="btn-primary">
+            Get 500 Free Credits
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+          </a>
+          <span class="hero-meta"><strong>No credit card.</strong> Ready in 30 seconds.</span>
+        </div>
+      </div>
+
+      <!-- LIVE DEMO CARD -->
+      <div class="demo-card fade-up" style="transition-delay: 0.15s">
+        <div class="demo-header">
+          <span class="demo-header-title">BidSquire Analysis</span>
+          <span class="demo-badge-live">Live</span>
+        </div>
+        <div class="demo-item">
+          <div class="demo-item-name">Vintage Omega Seamaster Cal. 562</div>
+          <div class="demo-item-source">GovDeals — Miami-Dade County</div>
+          <div class="demo-prices">
+            <div>
+              <div class="demo-price-label">Current Bid</div>
+              <div class="demo-price-bid">$85</div>
+            </div>
+            <div class="demo-arrow">→</div>
+            <div>
+              <div class="demo-price-label">Market Value</div>
+              <div class="demo-price-value">$420</div>
+            </div>
+            <div class="demo-profit">+394%</div>
+          </div>
+        </div>
+        <div class="demo-item">
+          <div class="demo-item-name">MCM Teak Credenza — Danish Modern</div>
+          <div class="demo-item-source">HiBid — South Florida Auctions</div>
+          <div class="demo-prices">
+            <div>
+              <div class="demo-price-label">Current Bid</div>
+              <div class="demo-price-bid">$120</div>
+            </div>
+            <div class="demo-arrow">→</div>
+            <div>
+              <div class="demo-price-label">Market Value</div>
+              <div class="demo-price-value">$850</div>
+            </div>
+            <div class="demo-profit">+608%</div>
+          </div>
+        </div>
+        <div class="demo-item">
+          <div class="demo-item-name">Canon EF 70-200mm f/2.8L IS II USM</div>
+          <div class="demo-item-source">AuctionZip — Broward County</div>
+          <div class="demo-prices">
+            <div>
+              <div class="demo-price-label">Current Bid</div>
+              <div class="demo-price-bid">$310</div>
+            </div>
+            <div class="demo-arrow">→</div>
+            <div>
+              <div class="demo-price-label">Market Value</div>
+              <div class="demo-price-value">$1,050</div>
+            </div>
+            <div class="demo-profit">+238%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="proof-bar">
+  <div class="container">
+    <div class="proof-stats fade-up">
+      <div>
+        <div class="proof-stat-num">2.4M+</div>
+        <div class="proof-stat-label">Sold records analyzed</div>
+      </div>
+      <div>
+        <div class="proof-stat-num">328%</div>
+        <div class="proof-stat-label">Avg. profit margin found</div>
+      </div>
+      <div>
+        <div class="proof-stat-num">30 sec</div>
+        <div class="proof-stat-label">To sign up — free</div>
+      </div>
+      <div>
+        <div class="proof-stat-num">AI + Human</div>
+        <div class="proof-stat-label">Expert-verified valuations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="container">
+    <div class="section-label fade-up">How It Works</div>
+    <h2 class="section-title fade-up">Three steps to smarter bidding</h2>
+    <p class="section-sub fade-up">Stop guessing. BidSquire does the research in seconds so you can focus on winning.</p>
+    <div class="steps-grid">
+      <div class="step-card fade-up">
+        <div class="step-num">01</div>
+        <div class="step-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </div>
+        <div class="step-title">We scan the auctions</div>
+        <div class="step-desc">Our AI continuously monitors local online auctions — HiBid, GovDeals, AuctionZip and more — and catalogs every listing in your area.</div>
+      </div>
+      <div class="step-card fade-up" style="transition-delay: 0.1s">
+        <div class="step-num">02</div>
+        <div class="step-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4m0 12v4M2 12h4m12 0h4m-3.5-6.5L17 7m-10 10-1.5 1.5M20.5 17.5 19 17M5 7 3.5 5.5"/></svg>
+        </div>
+        <div class="step-title">AI finds the price gap</div>
+        <div class="step-desc">BidSquire cross-references millions of sold records to calculate the real market value. Our expert appraisers verify the high-value finds.</div>
+      </div>
+      <div class="step-card fade-up" style="transition-delay: 0.2s">
+        <div class="step-num">03</div>
+        <div class="step-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <div class="step-title">You bid with confidence</div>
+        <div class="step-desc">You see the profit margin before you bid a single dollar. No gut feelings — just data. Buy low at local auctions, resell at full market value.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEAL EXAMPLE -->
+<section class="deal-section">
+  <div class="container">
+    <div class="deal-showcase fade-up">
+      <div class="deal-visual">
+        <div class="deal-item-card">
+          <div class="deal-item-tag">🔥 High Opportunity</div>
+          <div class="deal-item-title">Breitling Navitimer Ref. 806 (1960s)</div>
+          <div class="deal-item-auction">Estate Auction — Palm Beach County &bull; Ends in 4h 22m</div>
+          <div class="deal-row">
+            <span class="deal-row-label">Current Bid</span>
+            <span class="deal-row-val bid">$275</span>
+          </div>
+          <div class="deal-row">
+            <span class="deal-row-label">BidSquire Market Value</span>
+            <span class="deal-row-val market">$1,800</span>
+          </div>
+          <div class="deal-row">
+            <span class="deal-row-label">Potential Profit</span>
+            <span class="deal-row-val profit">$1,525 (554%)</span>
+          </div>
+          <div class="deal-row">
+            <span class="deal-row-label">Confidence</span>
+            <span class="deal-row-val" style="color: var(--green);">● High — 47 comps found</span>
+          </div>
+        </div>
+      </div>
+      <div class="deal-text">
+        <h3>This is what BidSquire shows you — before anyone else sees it</h3>
+        <p>Most bidders at local auctions are guessing. They see a nice watch, they throw a number at it. You see the data: 47 comparable sales, average selling price, condition-adjusted value, and a confidence score.</p>
+        <ul>
+          <li>AI scans the listing photos and description automatically</li>
+          <li>Cross-references eBay sold data, auction records, and dealer prices</li>
+          <li>Expert appraisers verify high-value items for accuracy</li>
+          <li>You get the full report before the auction closes</li>
+        </ul>
+        <a href="https://onboarding.bidsquire.com/signup" class="btn-primary">
+          Try It Free — 500 Credits
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING TEASER -->
+<section class="pricing-teaser">
+  <div class="container">
+    <div class="pricing-card fade-up">
+      <div class="pricing-flag">Free to Start</div>
+      <h3 class="pricing-title">500 Free Credits</h3>
+      <p class="pricing-desc">Start analyzing auctions today. No credit card. No commitment. Good for 30 days.</p>
+      <ul class="pricing-perks">
+        <li>Full access to AI valuation engine</li>
+        <li>Millions of sold-record comparisons</li>
+        <li>Expert appraisal credits included</li>
+        <li>Works with HiBid, GovDeals, AuctionZip & more</li>
+        <li>Exclusive territory available when you upgrade</li>
+      </ul>
+      <a href="https://onboarding.bidsquire.com/signup" class="btn-primary" style="width: 100%; justify-content: center;">
+        Get 500 Free Credits
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </a>
+      <p class="pricing-note">No credit card required. Upgrade anytime.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container fade-up">
+    <h2>Stop guessing. Start knowing.</h2>
+    <p>Every auction you sit out is a deal someone else is winning. BidSquire gives you the edge.</p>
+    <a href="https://onboarding.bidsquire.com/signup" class="btn-primary" style="display: inline-flex;">
+      Get 500 Free Credits — It's Free
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>&copy; 2026 BidSquire. All rights reserved. &nbsp;|&nbsp; <a href="#">Terms of Service</a> &nbsp;|&nbsp; <a href="#">Privacy Policy</a></p>
+  </div>
+</footer>
+
+<!-- SCROLL ANIMATIONS -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
