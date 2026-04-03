@@ -4,9 +4,10 @@
 #   gcloud artifacts repositories create bidsquire-docker --repository-format=docker --location=REGION
 #
 # Trigger: connect repo, set config path to bidsquire-marketing/cloudbuild.yaml (repo root = monorepo root).
-# Optional trigger substitutions (defaults are empty; Next.js will use lib/site.ts defaults):
+# Optional trigger substitutions (defaults are empty; Next.js will use lib/site.ts / lib/site-url.ts defaults):
 #   _NEXT_PUBLIC_ONBOARDING_SIGNUP_URL
 #   _NEXT_PUBLIC_APP_SIGNIN_URL
+#   _NEXT_PUBLIC_SITE_URL  (canonical origin for OG/sitemap/robots; default in code is https://bidsquire.com)
 
 substitutions:
   _REGION: us-central1
@@ -29,6 +30,8 @@ steps:
       - NEXT_PUBLIC_ONBOARDING_SIGNUP_URL=${_NEXT_PUBLIC_ONBOARDING_SIGNUP_URL}
       - --build-arg
       - NEXT_PUBLIC_APP_SIGNIN_URL=${_NEXT_PUBLIC_APP_SIGNIN_URL}
+      - --build-arg
+      - NEXT_PUBLIC_SITE_URL=${_NEXT_PUBLIC_SITE_URL}
       - .
 
   - name: gcr.io/cloud-builders/docker

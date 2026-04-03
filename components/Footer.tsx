@@ -4,7 +4,7 @@ import { ButtonLink } from "./ButtonLink";
 
 const links = [
   { href: "/how-it-works", label: "How It Works" },
-  { href: "/pricing-tiers", label: "Pricing Tiers" },
+  { href: "/pricing-tiers", label: "Pricing" },
   { href: "/auction-results", label: "Auction Results" },
   { href: "/more-auction-results", label: "More Results" },
 ] as const;
@@ -45,20 +45,8 @@ export function Footer() {
             </span>
           ))}
         </nav>
-        <p className="mt-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-xs text-slate-600">
-          <span>© {new Date().getFullYear()} BidSquire. All rights reserved.</span>
-          <span className="text-slate-700" aria-hidden>
-            |
-          </span>
-          <a href="#" className="hover:text-slate-400">
-            Terms of Service
-          </a>
-          <span className="text-slate-700" aria-hidden>
-            |
-          </span>
-          <a href="#" className="hover:text-slate-400">
-            Privacy Policy
-          </a>
+        <p className="mt-8 text-center text-xs text-slate-600">
+          © {new Date().getFullYear()} BidSquire. All rights reserved.
         </p>
       </div>
     </footer>
