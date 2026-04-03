@@ -1,0 +1,54 @@
+# Cloud Build: build from bidsquire-marketing/, push to Artifact Registry, deploy to Cloud Run.
+#
+# Prereqs:
+#   gcloud artifacts repositories create bidsquire-docker --repository-format=docker --location=REGION
+#
+# Trigger: connect repo, set config path to bidsquire-marketing/cloudbuild.yaml (repo root = monorepo root).
+# Optional trigger substitutions (defaults are empty; Next.js will use lib/site.ts defaults):
+#   _NEXT_PUBLIC_ONBOARDING_SIGNUP_URL
+#   _NEXT_PUBLIC_APP_SIGNIN_URL
+
+substitutions:
+  _REGION: us-central1
+  _AR_REPOSITORY: bidsquire-docker
+  _SERVICE_NAME: bidsquire-marketing
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+steps:
+  - name: gcr.io/cloud-builders/docker
+    dir: bidsquire-marketing
+    args:
+      - build
+      - -t
+      - ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPOSITORY}/${_SERVICE_NAME}:${SHORT_SHA}
+      - -t
+      - ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPOSITORY}/${_SERVICE_NAME}:latest
+      - --build-arg
+      - NEXT_PUBLIC_ONBOARDING_SIGNUP_URL=${_NEXT_PUBLIC_ONBOARDING_SIGNUP_URL}
+      - --build-arg
+      - NEXT_PUBLIC_APP_SIGNIN_URL=${_NEXT_PUBLIC_APP_SIGNIN_URL}
+      - .
+
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - --all-tags
+      - ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPOSITORY}/${_SERVICE_NAME}
+
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - ${_SERVICE_NAME}
+      - --image=${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPOSITORY}/${_SERVICE_NAME}:${SHORT_SHA}
+      - --region=${_REGION}
+      - --platform=managed
+      - --allow-unauthenticated
+      - --port=3000
+
+images:
+  - ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPOSITORY}/${_SERVICE_NAME}:${SHORT_SHA}
+  - ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPOSITORY}/${_SERVICE_NAME}:latest

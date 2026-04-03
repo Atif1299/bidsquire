@@ -4,14 +4,14 @@ Next.js (App Router) marketing site for **bidsquire.com**: shared header/footer,
 
 ## Environment variables
 
-Set these in Vercel (or `.env.local` for local dev). All are optional; defaults match production URLs.
+Set at **build time** for `NEXT_PUBLIC_*` (Docker / Cloud Build args) or in `.env.local` for local dev. Optional; defaults match production URLs.
 
 | Variable | Purpose | Default |
 |----------|---------|---------|
-| `NEXT_PUBLIC_ONBOARDING_SIGNUP_URL` | Primary “Start free” / signup CTA | `https://onboarding.bidsquire.com/signup` |
+| `NEXT_PUBLIC_ONBOARDING_SIGNUP_URL` | Primary signup CTA | `https://onboarding.bidsquire.com/signup` |
 | `NEXT_PUBLIC_APP_SIGNIN_URL` | Header “Sign in” | `https://app.bidsquire.com/auth/login` |
 
-Helpers live in `lib/site.ts` (`getSignupUrl`, `getSignInUrl`).
+Helpers: `lib/site.ts` (`getSignupUrl`, `getSignInUrl`).
 
 ## Local development
 
@@ -22,16 +22,61 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Deploy on Vercel
+## Deploy on Google Cloud Run
 
-1. Create a **new Vercel project** from this repository.
-2. Set **Root Directory** to `bidsquire-marketing` (not the monorepo root).
-3. Add the environment variables above if staging URLs differ from defaults.
-4. Deploy.
+Cloud Run runs a **container**. This folder includes a **Dockerfile** (Next.js `standalone` output) and an optional **cloudbuild.yaml** for CI from GitHub/GitLab.
 
-## Domain
+### One-time GCP setup
 
-To serve **bidsquire.com** from this project: in the Vercel project, add the domain under **Settings → Domains** and update DNS at your registrar using the records Vercel provides (typically A/CNAME as shown in the dashboard).
+1. Enable APIs: Cloud Run, Artifact Registry, Cloud Build.
+2. Create a Docker Artifact Registry repository (name must match `cloudbuild.yaml` or change `_AR_REPOSITORY`):
+
+   ```bash
+   gcloud artifacts repositories create bidsquire-docker \
+     --repository-format=docker \
+     --location=us-central1
+   ```
+
+3. Grant the Cloud Build service account permission to deploy to Cloud Run (`roles/run.admin`) and to use the service account that runs Cloud Run (`roles/iam.serviceAccountUser` on the compute default SA).
+
+### Option A — Cloud Build trigger (connect repo)
+
+1. **Cloud Build → Triggers → Connect repository** (2nd gen).
+2. **Configuration**: Cloud Build configuration file (yaml).
+3. **Location**: path to this file from repo root, e.g. `bidsquire-marketing/cloudbuild.yaml`.
+4. **Substitutions** (optional): `_NEXT_PUBLIC_ONBOARDING_SIGNUP_URL`, `_NEXT_PUBLIC_APP_SIGNIN_URL` if you need non-default URLs at build time.
+5. Adjust `_REGION` / `_AR_REPOSITORY` / `_SERVICE_NAME` in `cloudbuild.yaml` if needed.
+
+Each push runs: `docker build` in `bidsquire-marketing/` → push image → `gcloud run deploy`.
+
+### Option B — Manual Docker + Cloud Run
+
+From **monorepo root** (parent of `bidsquire-marketing`):
+
+```bash
+cd bidsquire-marketing
+docker build -t REGION-docker.pkg.dev/PROJECT_ID/bidsquire-docker/bidsquire-marketing:latest .
+docker push REGION-docker.pkg.dev/PROJECT_ID/bidsquire-docker/bidsquire-marketing:latest
+gcloud run deploy bidsquire-marketing \
+  --image REGION-docker.pkg.dev/PROJECT_ID/bidsquire-docker/bidsquire-marketing:latest \
+  --region REGION \
+  --platform managed \
+  --allow-unauthenticated \
+  --port 3000
+```
+
+With public env at build time:
+
+```bash
+docker build \
+  --build-arg NEXT_PUBLIC_ONBOARDING_SIGNUP_URL=https://onboarding.bidsquire.com/signup \
+  --build-arg NEXT_PUBLIC_APP_SIGNIN_URL=https://app.bidsquire.com/auth/login \
+  -t YOUR_IMAGE .
+```
+
+### Monorepo note
+
+`cloudbuild.yaml` uses `dir: bidsquire-marketing` so the build context is this directory. The trigger must live on the repo that contains `bidsquire-marketing/` at that path.
 
 ## Routes
 
@@ -44,3 +89,10 @@ To serve **bidsquire.com** from this project: in the Vercel project, add the dom
 | `/more-auction-results` | More results |
 
 Internal navigation uses Next.js `<Link>`. External CTAs use the env-driven URLs above.
+
+## Scripts
+
+| Script | Use |
+|--------|-----|
+| `npm run build` | Local build with Turbopack |
+| `npm run build:docker` | Production build for Docker (`standalone`) |
