@@ -12,7 +12,7 @@ const links = [
 export function Footer() {
   const signup = getSignupUrl();
   return (
-    <footer className="border-t border-slate-800 bg-[#0a0e17] py-12">
+    <footer className="border-t border-white/[0.06] bg-[#0a0e17] py-12">
       <div className="mx-auto max-w-[1120px] px-6">
         <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
           <div>
@@ -29,7 +29,7 @@ export function Footer() {
           </ButtonLink>
         </div>
         <nav
-          className="mt-10 flex flex-wrap items-center justify-center gap-2 border-t border-slate-800 pt-8 text-sm text-slate-500 md:justify-start"
+          className="mt-10 flex flex-wrap items-center justify-center gap-2 pt-2 text-sm text-slate-500 md:justify-start"
           aria-label="Footer"
         >
           {links.map(({ href, label }, i) => (

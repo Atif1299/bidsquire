@@ -40,19 +40,19 @@ const ROWS: Row[] = [
 
 export function PricingComparisonTable() {
   return (
-    <div className="overflow-x-auto rounded-xl border border-slate-700/80">
+    <div className="overflow-x-auto rounded-2xl border border-white/[0.08] bg-slate-900/30">
       <table className="w-full min-w-[520px] border-collapse text-left text-sm">
         <thead>
-          <tr className="border-b border-slate-800 bg-slate-900/70">
+          <tr className="bg-slate-900/60">
             <th className="px-4 py-3 font-semibold text-slate-300">Feature</th>
             <th className="px-4 py-3 font-semibold text-slate-200">Starter</th>
             <th className="px-4 py-3 font-semibold text-cyan-400">Growth</th>
             <th className="px-4 py-3 font-semibold text-slate-200">Team</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="divide-y divide-white/[0.06]">
           {ROWS.map((row) => (
-            <tr key={row.feature} className="border-b border-slate-800/80 bg-slate-900/30">
+            <tr key={row.feature} className="bg-slate-900/25">
               <td className="px-4 py-3 text-slate-400">{row.feature}</td>
               <td className="px-4 py-3 text-slate-200">{row.starter}</td>
               <td className="px-4 py-3 text-slate-200">{row.growth}</td>

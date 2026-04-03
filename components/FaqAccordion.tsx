@@ -21,7 +21,7 @@ export function FaqAccordion({
         {items.map((item) => (
           <details
             key={item.q}
-            className="group rounded-xl border border-slate-700/80 bg-slate-900/40 px-5 py-1 open:bg-slate-900/60"
+            className="group rounded-2xl border border-white/[0.08] bg-slate-900/40 px-5 py-1 open:bg-slate-900/55"
           >
             <summary className="cursor-pointer list-none py-4 font-semibold text-slate-100 marker:hidden [&::-webkit-details-marker]:hidden">
               <span className="flex items-center justify-between gap-3">
@@ -29,7 +29,7 @@ export function FaqAccordion({
                 <span className="text-cyan-400 transition group-open:rotate-180">▼</span>
               </span>
             </summary>
-            <p className="border-t border-slate-800 pb-4 pt-3 text-sm leading-relaxed text-slate-400">
+            <p className="pb-4 pt-1 text-sm leading-relaxed text-slate-400">
               {item.a}
             </p>
           </details>

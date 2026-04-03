@@ -8,7 +8,7 @@ const STEPS = [
 function StepBubble({ n, label }: { n: number; label: string }) {
   return (
     <div className="flex flex-col items-center gap-2 text-center">
-      <div className="flex h-11 w-11 items-center justify-center rounded-full border border-cyan-400/40 bg-cyan-400/10 font-mono text-sm font-bold text-cyan-400">
+      <div className="flex h-11 w-11 items-center justify-center rounded-full bg-cyan-400/10 font-mono text-sm font-bold text-cyan-400 ring-1 ring-cyan-400/25">
         {n}
       </div>
       <span className="text-sm font-medium text-slate-200">{label}</span>
@@ -19,7 +19,7 @@ function StepBubble({ n, label }: { n: number; label: string }) {
 export function PipelineDiagram() {
   return (
     <div
-      className="rounded-xl border border-slate-700/80 bg-slate-900/50 px-6 py-8 md:px-10"
+      className="rounded-2xl border border-white/[0.08] bg-slate-900/45 px-6 py-8 md:px-10"
       aria-hidden
     >
       <div className="flex flex-col items-center gap-4 md:hidden">

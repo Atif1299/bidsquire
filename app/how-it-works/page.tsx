@@ -98,17 +98,17 @@ export default function HowItWorksPage() {
 
   return (
     <>
-      <section className="border-b border-slate-800 bg-slate-900/30 py-12 md:py-16">
+      <PageHero>
         <div className="mx-auto max-w-[1120px] px-6 text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">How it works</p>
           <h1 className="mt-3 text-3xl font-bold tracking-tight text-slate-50 md:text-5xl">
             From noisy listings to a clear bid decision
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base text-slate-400 md:text-lg">
+          <p className="mx-auto mt-5 max-w-2xl text-base text-slate-400 md:text-lg">
             BidSquire is built for people who already love auctions but hate guessing the number. Here is the flow we
             optimize for—end to end.
           </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
             <ButtonLink href={signup} variant="primary" className="px-6 py-2.5">
               Get 500 free credits
             </ButtonLink>
@@ -117,7 +117,7 @@ export default function HowItWorksPage() {
             </ButtonLink>
           </div>
         </div>
-      </section>
+      </PageHero>
 
       <section className="py-14 md:py-20">
         <div className="mx-auto max-w-[1120px] px-6">
@@ -137,7 +137,7 @@ export default function HowItWorksPage() {
           {stepCards.map((step) => (
             <div
               key={step.title}
-              className="rounded-xl border border-slate-700/80 bg-slate-900/40 p-8 transition hover:border-cyan-400/35 hover:-translate-y-0.5"
+              className="rounded-2xl border border-white/[0.08] bg-slate-900/40 p-8 transition hover:border-cyan-400/30 hover:-translate-y-0.5"
             >
               <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-cyan-400/10 text-cyan-400">
                 {step.icon}
@@ -149,13 +149,13 @@ export default function HowItWorksPage() {
         </div>
       </Section>
 
-      <section className="border-y border-slate-800 bg-slate-900/25 py-16 md:py-20">
+      <section className="bg-slate-900/20 py-16 md:py-24">
         <div className="mx-auto max-w-[1120px] px-6">
           <h2 className="text-center text-2xl font-bold text-slate-50 md:text-3xl">Under the hood</h2>
           <p className="mx-auto mt-3 max-w-xl text-center text-slate-400">
             A slightly more detailed pipeline—same story as above, with product-shaped wording.
           </p>
-          <ol className="mx-auto mt-12 max-w-2xl space-y-8 border-l border-slate-800 pl-8">
+          <ol className="mx-auto mt-12 max-w-2xl space-y-8 border-l border-white/[0.08] pl-8">
             {[
               {
                 title: "Ingest",
@@ -191,7 +191,7 @@ export default function HowItWorksPage() {
         title="Why we meter with credits"
         subtitle="You should not have to pick the wrong subscription shape before you know how hard you will run the tool."
       >
-        <div className="mx-auto max-w-2xl rounded-xl border border-slate-700/80 bg-slate-900/50 p-8">
+        <div className="mx-auto max-w-2xl rounded-2xl border border-white/[0.08] bg-slate-900/45 p-8">
           <p className="text-slate-300">
             Credits keep heavy lookups honest: you use more when a lot is worth the extra look, and less when you are
             skimming. Many teams pair a starter allocation with upgrades as volume grows—see{" "}

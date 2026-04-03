@@ -11,7 +11,7 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-24">
+      <section className="relative flex min-h-[min(88vh,38rem)] flex-col justify-center overflow-hidden py-28 md:min-h-[min(86vh,42rem)] md:py-36 lg:min-h-[min(84vh,44rem)]">
         <div
           className="pointer-events-none absolute left-1/2 top-0 h-[600px] w-[800px] -translate-x-1/2 bg-[radial-gradient(ellipse,rgba(34,211,238,0.08)_0%,transparent_70%)]"
           aria-hidden
@@ -45,8 +45,8 @@ export default function HomePage() {
               No credit card required · Ready in about 30 seconds · Then activate from email and sign in to the app
             </p>
           </div>
-          <div className="rounded-xl border border-slate-700/80 bg-slate-900/70 shadow-2xl shadow-black/40 backdrop-blur-sm">
-            <div className="flex items-center justify-between border-b border-slate-800 bg-slate-800/40 px-5 py-4">
+          <div className="rounded-2xl border border-white/[0.08] bg-slate-900/70 shadow-2xl shadow-black/40 backdrop-blur-sm">
+            <div className="flex items-center justify-between bg-slate-800/35 px-5 py-4">
               <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
                 Sample scan
               </span>
@@ -55,7 +55,7 @@ export default function HomePage() {
                 Active
               </span>
             </div>
-            <ul className="divide-y divide-slate-800">
+            <ul className="divide-y divide-white/[0.06]">
               <li className="px-5 py-5">
                 <p className="font-semibold text-slate-100">Industrial shelving unit</p>
                 <p className="mt-1 text-xs text-slate-500">County surplus · Online</p>
@@ -69,7 +69,7 @@ export default function HomePage() {
                     <p className="text-[11px] font-medium uppercase tracking-wide text-slate-500">Est. value</p>
                     <p className="font-mono text-lg font-bold text-slate-200">$280–340</p>
                   </div>
-                  <span className="ml-auto rounded-md border border-slate-600 bg-slate-800/80 px-2 py-1 font-mono text-xs font-semibold text-slate-300">
+                  <span className="ml-auto rounded-lg bg-slate-800/90 px-2 py-1 font-mono text-xs font-semibold text-slate-300">
                     Headroom
                   </span>
                 </div>
@@ -87,7 +87,7 @@ export default function HomePage() {
                     <p className="text-[11px] font-medium uppercase tracking-wide text-slate-500">Est. value</p>
                     <p className="font-mono text-lg font-bold text-slate-200">$1.1k–1.4k</p>
                   </div>
-                  <span className="ml-auto rounded-md border border-slate-600 bg-slate-800/80 px-2 py-1 font-mono text-xs font-semibold text-slate-300">
+                  <span className="ml-auto rounded-lg bg-slate-800/90 px-2 py-1 font-mono text-xs font-semibold text-slate-300">
                     Headroom
                   </span>
                 </div>
@@ -133,7 +133,7 @@ export default function HomePage() {
           ].map((step) => (
             <div
               key={step.n}
-              className="relative rounded-xl border border-slate-700/80 bg-slate-900/40 p-8 transition hover:border-cyan-400/40 hover:-translate-y-1"
+              className="relative rounded-2xl border border-white/[0.08] bg-slate-900/40 p-8 transition hover:border-cyan-400/30 hover:-translate-y-1"
             >
               <span className="absolute right-5 top-4 font-mono text-5xl font-bold text-cyan-400/10">{step.n}</span>
               <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-cyan-400/10 text-cyan-400">
@@ -155,7 +155,7 @@ export default function HomePage() {
         label="Results"
         title="Proof without the neon hype"
         subtitle="We show bid, estimate, and headroom in calm cards—closer to a serious tool than a tabloid flip headline."
-        className="border-t border-slate-800/80 bg-slate-900/20"
+        className="bg-slate-900/20"
       >
         <p className="mb-8 max-w-2xl text-slate-400">
           Sample cards are illustrative; they exist so visitors understand the layout before they sign up—not to promise
