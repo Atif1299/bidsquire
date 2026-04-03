@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BidSquire marketing site
 
-## Getting Started
+Next.js (App Router) marketing site for **bidsquire.com**: shared header/footer, env-based CTAs to onboarding and the app, and routes aligned with the previous Canva structure.
 
-First, run the development server:
+## Environment variables
+
+Set these in Vercel (or `.env.local` for local dev). All are optional; defaults match production URLs.
+
+| Variable | Purpose | Default |
+|----------|---------|---------|
+| `NEXT_PUBLIC_ONBOARDING_SIGNUP_URL` | Primary “Start free” / signup CTA | `https://onboarding.bidsquire.com/signup` |
+| `NEXT_PUBLIC_APP_SIGNIN_URL` | Header “Sign in” | `https://app.bidsquire.com/auth/login` |
+
+Helpers live in `lib/site.ts` (`getSignupUrl`, `getSignInUrl`).
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Open [http://localhost:3000](http://localhost:3000).
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Create a **new Vercel project** from this repository.
+2. Set **Root Directory** to `bidsquire-marketing` (not the monorepo root).
+3. Add the environment variables above if staging URLs differ from defaults.
+4. Deploy.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Domain
+
+To serve **bidsquire.com** from this project: in the Vercel project, add the domain under **Settings → Domains** and update DNS at your registrar using the records Vercel provides (typically A/CNAME as shown in the dashboard).
+
+## Routes
+
+| Path | Page |
+|------|------|
+| `/` | Home |
+| `/how-it-works` | How it works |
+| `/pricing-tiers` | Pricing tiers |
+| `/auction-results` | Auction results |
+| `/more-auction-results` | More results |
+
+Internal navigation uses Next.js `<Link>`. External CTAs use the env-driven URLs above.

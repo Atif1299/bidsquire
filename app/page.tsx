@@ -1,103 +1,174 @@
-import Image from "next/image";
+import Link from "next/link";
+import { CtaBand } from "@/components/CtaBand";
+import { Section } from "@/components/Section";
+import { StatsStrip } from "@/components/StatsStrip";
+import { TrustBadges } from "@/components/TrustBadges";
+import { ButtonLink } from "@/components/ButtonLink";
+import { getSignupUrl } from "@/lib/site";
 
-export default function Home() {
+export default function HomePage() {
+  const signup = getSignupUrl();
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <>
+      <section className="relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-24">
+        <div
+          className="pointer-events-none absolute left-1/2 top-0 h-[600px] w-[800px] -translate-x-1/2 bg-[radial-gradient(ellipse,rgba(34,211,238,0.08)_0%,transparent_70%)]"
+          aria-hidden
         />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        <div className="relative mx-auto grid max-w-[1120px] gap-12 px-6 md:grid-cols-2 md:items-center md:gap-16">
+          <div>
+            <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3.5 py-1.5 text-sm font-medium text-cyan-400">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400" />
+              AI-assisted local auction intelligence
+            </p>
+            <h1 className="text-4xl font-bold leading-[1.1] tracking-tight text-slate-50 md:text-5xl lg:text-[3.5rem]">
+              Know what it&apos;s{" "}
+              <em className="not-italic text-cyan-400">really worth</em> before you bid
+            </h1>
+            <p className="mt-6 max-w-lg text-lg leading-relaxed text-slate-400">
+              BidSquire pulls together local online auctions and surfaces estimated value context next to the current
+              bid—so you move faster than guesswork and save credits for the lots that deserve a deeper look.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <ButtonLink href={signup} variant="primary" className="px-8 py-3.5 text-base">
+                Get 500 free credits
+              </ButtonLink>
+              <Link
+                href="/how-it-works"
+                className="text-sm font-semibold text-cyan-400 hover:text-cyan-300"
+              >
+                How it works →
+              </Link>
+            </div>
+            <p className="mt-6 text-sm text-slate-500">
+              No credit card required · Ready in about 30 seconds · Then activate from email and sign in to the app
+            </p>
+          </div>
+          <div className="rounded-xl border border-slate-700/80 bg-slate-900/70 shadow-2xl shadow-black/40 backdrop-blur-sm">
+            <div className="flex items-center justify-between border-b border-slate-800 bg-slate-800/40 px-5 py-4">
+              <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                Sample scan
+              </span>
+              <span className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-emerald-400">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+                Active
+              </span>
+            </div>
+            <ul className="divide-y divide-slate-800">
+              <li className="px-5 py-5">
+                <p className="font-semibold text-slate-100">Industrial shelving unit</p>
+                <p className="mt-1 text-xs text-slate-500">County surplus · Online</p>
+                <div className="mt-4 flex flex-wrap items-end gap-4">
+                  <div>
+                    <p className="text-[11px] font-medium uppercase tracking-wide text-slate-500">Bid</p>
+                    <p className="font-mono text-lg font-bold text-slate-200">$95</p>
+                  </div>
+                  <span className="text-slate-600">→</span>
+                  <div>
+                    <p className="text-[11px] font-medium uppercase tracking-wide text-slate-500">Est. value</p>
+                    <p className="font-mono text-lg font-bold text-slate-200">$280–340</p>
+                  </div>
+                  <span className="ml-auto rounded-md border border-slate-600 bg-slate-800/80 px-2 py-1 font-mono text-xs font-semibold text-slate-300">
+                    Headroom
+                  </span>
+                </div>
+              </li>
+              <li className="px-5 py-5">
+                <p className="font-semibold text-slate-100">Commercial freezer</p>
+                <p className="mt-1 text-xs text-slate-500">Restaurant liquidation</p>
+                <div className="mt-4 flex flex-wrap items-end gap-4">
+                  <div>
+                    <p className="text-[11px] font-medium uppercase tracking-wide text-slate-500">Bid</p>
+                    <p className="font-mono text-lg font-bold text-slate-200">$620</p>
+                  </div>
+                  <span className="text-slate-600">→</span>
+                  <div>
+                    <p className="text-[11px] font-medium uppercase tracking-wide text-slate-500">Est. value</p>
+                    <p className="font-mono text-lg font-bold text-slate-200">$1.1k–1.4k</p>
+                  </div>
+                  <span className="ml-auto rounded-md border border-slate-600 bg-slate-800/80 px-2 py-1 font-mono text-xs font-semibold text-slate-300">
+                    Headroom
+                  </span>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      <TrustBadges />
+
+      <StatsStrip
+        stats={[
+          { value: "2.4M+", label: "Sold records (style metric)", note: "Illustrative" },
+          { value: "328%", label: "Example margin story", note: "Not a promise" },
+          { value: "~30 sec", label: "To start signup", note: "Typical flow" },
+        ]}
+        disclaimer="Figures above are for storytelling on this page only—not audited business metrics. Replace with verified stats when marketing approves."
+      />
+
+      <Section
+        label="How it works"
+        title="Three steps to smarter bidding"
+        subtitle="Same journey we describe on the dedicated page—tight enough to scan from home."
+      >
+        <div className="grid gap-8 md:grid-cols-3">
+          {[
+            {
+              n: "01",
+              t: "Scan",
+              d: "Aggregate listings from the auction channels you care about in one place.",
+            },
+            {
+              n: "02",
+              t: "Compare",
+              d: "See current bids next to estimated value bands so signal stands out from noise.",
+            },
+            {
+              n: "03",
+              t: "Bid smarter",
+              d: "Use credits for deeper lookups when you need more context on edge cases.",
+            },
+          ].map((step) => (
+            <div
+              key={step.n}
+              className="relative rounded-xl border border-slate-700/80 bg-slate-900/40 p-8 transition hover:border-cyan-400/40 hover:-translate-y-1"
+            >
+              <span className="absolute right-5 top-4 font-mono text-5xl font-bold text-cyan-400/10">{step.n}</span>
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-cyan-400/10 text-cyan-400">
+                <span className="font-mono text-sm font-bold">{step.n}</span>
+              </div>
+              <h3 className="text-lg font-bold text-slate-100">{step.t}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-400">{step.d}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-10 text-center">
+          <Link href="/how-it-works" className="text-sm font-semibold text-cyan-400 hover:text-cyan-300">
+            Full walkthrough & FAQ →
+          </Link>
+        </p>
+      </Section>
+
+      <Section
+        label="Results"
+        title="Proof without the neon hype"
+        subtitle="We show bid, estimate, and headroom in calm cards—closer to a serious tool than a tabloid flip headline."
+        className="border-t border-slate-800/80 bg-slate-900/20"
+      >
+        <p className="mb-8 max-w-2xl text-slate-400">
+          Sample cards are illustrative; they exist so visitors understand the layout before they sign up—not to promise
+          any specific return.
+        </p>
+        <div className="flex justify-center">
+          <ButtonLink href="/auction-results" variant="outline">
+            View auction results
+          </ButtonLink>
+        </div>
+      </Section>
+
+      <CtaBand />
+    </>
   );
 }
