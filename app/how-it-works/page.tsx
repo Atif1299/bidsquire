@@ -6,7 +6,8 @@ import { Section } from "@/components/Section";
 import { ButtonLink } from "@/components/ButtonLink";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { PipelineDiagram } from "@/components/PipelineDiagram";
-import { getSignupUrl } from "@/lib/site";
+
+const SIGNUP_URL = "https://onboarding.bidsquire.com/signup";
 
 export const metadata: Metadata = {
   title: "How it works",
@@ -73,8 +74,6 @@ const FAQ = [
 ] as const;
 
 export default function HowItWorksPage() {
-  const signup = getSignupUrl();
-
   const stepCards = [
     {
       icon: <IconRadar />,
@@ -109,7 +108,7 @@ export default function HowItWorksPage() {
             optimize for—end to end.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <ButtonLink href={signup} variant="primary" className="px-6 py-2.5">
+            <ButtonLink href={SIGNUP_URL} variant="primary" className="px-6 py-2.5">
               Get 500 free credits
             </ButtonLink>
             <ButtonLink href="/pricing-tiers" variant="outline">

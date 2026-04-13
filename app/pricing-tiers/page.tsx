@@ -3,7 +3,8 @@ import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
 import { ButtonLink } from "@/components/ButtonLink";
 import { PricingComparisonTable } from "@/components/PricingComparisonTable";
-import { getSignupUrl } from "@/lib/site";
+
+const SIGNUP_URL = "https://onboarding.bidsquire.com/signup";
 
 export const metadata: Metadata = {
   title: "Pricing tiers",
@@ -48,8 +49,6 @@ const tiers = [
 ] as const;
 
 export default function PricingTiersPage() {
-  const signup = getSignupUrl();
-
   return (
     <>
       <PageHero>
@@ -66,7 +65,7 @@ export default function PricingTiersPage() {
             those in when you have them.
           </p>
           <div className="mt-8">
-            <ButtonLink href={signup} variant="primary" className="px-8 py-3">
+            <ButtonLink href={SIGNUP_URL} variant="primary" className="px-8 py-3">
               Get 500 free credits
             </ButtonLink>
           </div>
@@ -94,7 +93,7 @@ export default function PricingTiersPage() {
                 ))}
               </ul>
               <ButtonLink
-                href={signup}
+                href={SIGNUP_URL}
                 variant={tier.highlighted ? "primary" : "outline"}
                 className="mt-8 justify-center"
               >

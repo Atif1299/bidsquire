@@ -4,10 +4,10 @@ import { Section } from "@/components/Section";
 import { StatsStrip } from "@/components/StatsStrip";
 import { TrustBadges } from "@/components/TrustBadges";
 import { ButtonLink } from "@/components/ButtonLink";
-import { getSignupUrl } from "@/lib/site";
+
+const SIGNUP_URL = "https://onboarding.bidsquire.com/signup";
 
 export default function HomePage() {
-  const signup = getSignupUrl();
 
   return (
     <>
@@ -31,7 +31,7 @@ export default function HomePage() {
               bid—so you move faster than guesswork and save credits for the lots that deserve a deeper look.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <ButtonLink href={signup} variant="primary" className="px-8 py-3.5 text-base">
+              <ButtonLink href={SIGNUP_URL} variant="primary" className="px-8 py-3.5 text-base">
                 Get 500 free credits
               </ButtonLink>
               <Link

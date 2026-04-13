@@ -4,8 +4,9 @@ import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
 import { ResultCard } from "@/components/ResultCard";
 import { ButtonLink } from "@/components/ButtonLink";
-import { getSignupUrl } from "@/lib/site";
 import { sampleResultsPage2 } from "@/lib/sample-results";
+
+const SIGNUP_URL = "https://onboarding.bidsquire.com/signup";
 
 export const metadata: Metadata = {
   title: "More auction results",
@@ -14,8 +15,6 @@ export const metadata: Metadata = {
 };
 
 export default function MoreAuctionResultsPage() {
-  const signup = getSignupUrl();
-
   return (
     <>
       <PageHero>
@@ -31,7 +30,7 @@ export default function MoreAuctionResultsPage() {
             <ButtonLink href="/auction-results" variant="outline">
               Back to results
             </ButtonLink>
-            <ButtonLink href={signup} variant="primary" className="px-6 py-2.5">
+            <ButtonLink href={SIGNUP_URL} variant="primary" className="px-6 py-2.5">
               Get 500 free credits
             </ButtonLink>
           </div>

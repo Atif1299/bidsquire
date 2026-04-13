@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { getSignInUrl, getSignupUrl } from "@/lib/site";
 import { ButtonLink } from "./ButtonLink";
+
+const SIGNUP_URL = "https://onboarding.bidsquire.com/signup";
+const SIGNIN_URL = "https://app.bidsquire.com/auth/login";
 
 const nav = [
   { href: "/how-it-works", label: "How It Works" },
@@ -13,8 +15,6 @@ const nav = [
 ] as const;
 
 export function Header() {
-  const signup = getSignupUrl();
-  const signin = getSignInUrl();
   const [open, setOpen] = useState(false);
 
   return (
@@ -40,10 +40,10 @@ export function Header() {
         </nav>
 
         <div className="hidden shrink-0 items-center gap-3 lg:flex">
-          <ButtonLink href={signin} variant="outline" className="px-4 py-2 text-sm">
+          <ButtonLink href={SIGNIN_URL} variant="outline" className="px-4 py-2 text-sm">
             Sign in
           </ButtonLink>
-          <ButtonLink href={signup} variant="primary" className="px-4 py-2 text-sm">
+          <ButtonLink href={SIGNUP_URL} variant="primary" className="px-4 py-2 text-sm">
             Get 500 free credits
           </ButtonLink>
         </div>
@@ -86,10 +86,10 @@ export function Header() {
             ))}
           </nav>
           <div className="mt-4 flex flex-col gap-2 border-t border-slate-800 pt-4">
-            <ButtonLink href={signin} variant="outline" className="justify-center py-2.5" onClick={() => setOpen(false)}>
+            <ButtonLink href={SIGNIN_URL} variant="outline" className="justify-center py-2.5" onClick={() => setOpen(false)}>
               Sign in
             </ButtonLink>
-            <ButtonLink href={signup} variant="primary" className="justify-center py-2.5" onClick={() => setOpen(false)}>
+            <ButtonLink href={SIGNUP_URL} variant="primary" className="justify-center py-2.5" onClick={() => setOpen(false)}>
               Get 500 free credits
             </ButtonLink>
           </div>

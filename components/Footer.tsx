@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { getSignupUrl } from "@/lib/site";
 import { ButtonLink } from "./ButtonLink";
+
+const SIGNUP_URL = "https://onboarding.bidsquire.com/signup";
 
 const links = [
   { href: "/how-it-works", label: "How It Works" },
@@ -10,7 +11,6 @@ const links = [
 ] as const;
 
 export function Footer() {
-  const signup = getSignupUrl();
   return (
     <footer className="border-t border-white/[0.06] bg-[#0a0e17] py-12">
       <div className="mx-auto max-w-[1120px] px-6">
@@ -24,7 +24,7 @@ export function Footer() {
               hammer falls.
             </p>
           </div>
-          <ButtonLink href={signup} variant="primary" className="shrink-0">
+          <ButtonLink href={SIGNUP_URL} variant="primary" className="shrink-0">
             Get 500 free credits
           </ButtonLink>
         </div>
