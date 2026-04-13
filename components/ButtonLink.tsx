@@ -1,9 +1,13 @@
 import Link from "next/link";
-import type { ComponentProps } from "react";
+import type { ComponentProps, AnchorHTMLAttributes } from "react";
 
-type Base = Omit<ComponentProps<typeof Link>, "className"> & {
+type LinkProps = Omit<ComponentProps<typeof Link>, "className">;
+type AnchorProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "className">;
+
+type Base = (LinkProps | AnchorProps) & {
   className?: string;
   variant?: "primary" | "outline";
+  href: string;
 };
 
 const base =
@@ -16,15 +20,21 @@ const variants = {
     "border border-slate-600 bg-transparent text-slate-200 hover:border-slate-500 hover:bg-slate-800/50",
 } as const;
 
+function isExternal(href: string): boolean {
+  return href.startsWith("http://") || href.startsWith("https://");
+}
+
 export function ButtonLink({
   variant = "primary",
   className = "",
+  href,
   ...props
 }: Base) {
-  return (
-    <Link
-      className={`${base} ${variants[variant]} ${className}`}
-      {...props}
-    />
-  );
+  const classes = `${base} ${variants[variant]} ${className}`;
+
+  if (isExternal(href)) {
+    return <a href={href} className={classes} {...props} />;
+  }
+
+  return <Link href={href} className={classes} {...props} />;
 }
