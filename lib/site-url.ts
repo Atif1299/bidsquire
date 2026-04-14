@@ -5,6 +5,6 @@
 export function getSiteUrl(): string {
   const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim();
   const origin =
-    raw && raw.length > 0 ? raw : "https://bidsquire.com";
+    raw && raw.length > 0 ? raw : "https://www.bidsquire.com";
   return origin.replace(/\/$/, "");
 }
