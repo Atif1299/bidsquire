@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bidsquire — Real Auction Results</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Barlow+Condensed:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0d1f;font-family:'DM Sans',sans-serif;color:#fff}
+
+nav{max-width:1100px;margin:0 auto;padding:28px 56px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;color:#fff}
+.logo span{color:#e8c547}
+.nav-cta{display:inline-block;border:1px solid rgba(232,197,71,.5);color:#e8c547;font-size:13px;font-weight:500;padding:9px 22px;border-radius:6px;text-decoration:none}
+
+.gold{color:#e8c547}
+.eye{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#e8c547;opacity:.75;margin-bottom:18px}
+.btn-primary{display:inline-block;background:#e8c547;color:#0f1128;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;padding:15px 40px;border-radius:8px;text-decoration:none}
+.btn-primary:hover{opacity:.88}
+.noccc{font-size:12px;color:rgba(255,255,255,.3);margin-top:12px;letter-spacing:.03em}
+
+/* HERO */
+.hero{max-width:1100px;margin:0 auto;padding:72px 56px 56px;text-align:center}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-size:62px;font-weight:700;line-height:1.0;letter-spacing:-.4px;margin-bottom:20px}
+.hero p{font-size:18px;color:rgba(255,255,255,.55);max-width:620px;margin:0 auto 16px;line-height:1.65}
+.hw{display:inline-block;margin:0 auto 48px;padding:16px 24px;border-left:3px solid rgba(232,197,71,.4);text-align:left;max-width:620px}
+.hw p{font-family:'Caveat',cursive;font-size:21px;font-weight:600;color:rgba(255,255,255,.82);line-height:1.6}
+
+/* STATS BAR */
+.stats{max-width:1100px;margin:0 auto 56px;padding:0 56px}
+.stats-inner{background:#0f1128;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:32px 48px;display:flex;justify-content:space-between;align-items:center;gap:24px}
+.stat{text-align:center}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:48px;font-weight:700;color:#e8c547;line-height:1}
+.stat-label{font-size:12px;color:rgba(255,255,255,.4);margin-top:6px;letter-spacing:.06em;text-transform:uppercase}
+.stat-divider{width:1px;height:60px;background:rgba(255,255,255,.08)}
+
+/* TABLE */
+.table-wrap{max-width:1100px;margin:0 auto 56px;padding:0 56px}
+.table-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:16px}
+
+table{width:100%;border-collapse:collapse}
+thead tr{border-bottom:1px solid rgba(255,255,255,.1)}
+thead th{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.3);padding:0 16px 12px;text-align:left;font-weight:500}
+thead th.right{text-align:right}
+thead th.center{text-align:center}
+
+tbody tr{border-bottom:1px solid rgba(255,255,255,.05);transition:background .15s}
+tbody tr:hover{background:rgba(255,255,255,.03)}
+
+td{padding:14px 16px;font-size:14px}
+td.desc{color:rgba(255,255,255,.75);max-width:400px}
+td.paid{color:rgba(255,255,255,.4);text-align:right;white-space:nowrap}
+td.sold{color:#fff;font-weight:500;text-align:right;white-space:nowrap}
+td.margin{text-align:center}
+
+.pill{display:inline-block;padding:4px 10px;border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.5px}
+.pill.high{background:rgba(232,197,71,.12);border:1px solid rgba(232,197,71,.25);color:#e8c547}
+.pill.mid{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6)}
+
+/* CTA */
+.final-cta{max-width:1100px;margin:0 auto;padding:0 56px 80px}
+.final-cta-inner{background:linear-gradient(160deg,#1a1e40 0%,#0f1128 60%,#0e1020 100%);border-radius:20px;padding:80px 56px;text-align:center;position:relative;overflow:hidden}
+.final-cta-inner::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(232,197,71,.07) 0%,transparent 70%);pointer-events:none}
+.final-cta-inner h2{font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:700;line-height:1.05;letter-spacing:-.3px;margin-bottom:16px}
+.final-cta-inner p{font-size:16px;color:rgba(255,255,255,.5);max-width:480px;margin:0 auto 36px;line-height:1.65}
+
+footer{max-width:1100px;margin:0 auto;padding:32px 56px;display:flex;align-items:center;justify-content:space-between}
+.footer-logo{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:rgba(255,255,255,.3)}
+.footer-logo span{color:rgba(232,197,71,.5)}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.2)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Bid<span>squire</span></div>
+  <a class="nav-cta" href="https://onboarding.bidsquire.com/">Try It Free</a>
+</nav>
+
+<div class="hero">
+  <p class="eye">Real Results · Real Numbers</p>
+  <h1>Listing after listing.<br><span class="gold">Sale after sale.</span></h1>
+  <p>These are real items from real auctions — bought with Bidsquire, priced with Bidsquire, sold on eBay. Every number here is actual, not estimated.</p>
+  <div class="hw">
+    <p>We didn't cherry-pick the wins. This is the inventory — the whole thing, lot by lot. You'll see the small margins and the big ones. That's how real reselling works.</p>
+  </div>
+  <a class="btn-primary" href="https://onboarding.bidsquire.com/">Start Your Free Auction</a>
+  <p class="noccc">No credit card required</p>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat">
+      <div class="stat-num">372%</div>
+      <div class="stat-label">Blended avg margin</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="stat-num">1,650%</div>
+      <div class="stat-label">Best single item</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="stat-num">$2</div>
+      <div class="stat-label">Lowest buy-in (turned $35)</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="stat-num">$80</div>
+      <div class="stat-label">Highest buy-in (turned $340)</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="stat-num">30+</div>
+      <div class="stat-label">Items tracked below</div>
+    </div>
+  </div>
+</div>
+
+<!-- TABLE -->
+<div class="table-wrap">
+  <p class="table-label">All transactions · paid → sold · real eBay prices</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th class="right">Paid</th>
+        <th class="right">Sold</th>
+        <th class="center">Margin</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="desc">1975 Mego Wonder Woman Doll</td><td class="paid">$2</td><td class="sold">$35</td><td class="margin"><span class="pill high">1,650%</span></td></tr>
+      <tr><td class="desc">Garfield &amp; Campbell Kids Soup Bowls (1978/1993)</td><td class="paid">$1</td><td class="sold">$14.50</td><td class="margin"><span class="pill high">1,350%</span></td></tr>
+      <tr><td class="desc">Robot Space Trooper</td><td class="paid">$2</td><td class="sold">$26</td><td class="margin"><span class="pill high">1,200%</span></td></tr>
+      <tr><td class="desc">Armstrong Music Portable Record Player (antique)</td><td class="paid">$5</td><td class="sold">$110</td><td class="margin"><span class="pill high">2,100%</span></td></tr>
+      <tr><td class="desc">Pot Metal Egyptian Soldier Statue</td><td class="paid">$11</td><td class="sold">$100</td><td class="margin"><span class="pill high">809%</span></td></tr>
+      <tr><td class="desc">Antique Soap Stone in Leather Satchel</td><td class="paid">$3</td><td class="sold">$25</td><td class="margin"><span class="pill high">733%</span></td></tr>
+      <tr><td class="desc">Grinch Car &amp; More (holiday collectibles lot)</td><td class="paid">$25</td><td class="sold">$93</td><td class="margin"><span class="pill high">272%</span></td></tr>
+      <tr><td class="desc">1869 Holy Bible (as-found)</td><td class="paid">$4</td><td class="sold">$55</td><td class="margin"><span class="pill high">1,275%</span></td></tr>
+      <tr><td class="desc">Antique Dresser Box</td><td class="paid">$7</td><td class="sold">$60</td><td class="margin"><span class="pill high">757%</span></td></tr>
+      <tr><td class="desc">Pioneer AM/FM 8-Track Stereo (powers up)</td><td class="paid">$27</td><td class="sold">$80</td><td class="margin"><span class="pill high">196%</span></td></tr>
+      <tr><td class="desc">Rockwell Saw</td><td class="paid">$11</td><td class="sold">$60</td><td class="margin"><span class="pill high">445%</span></td></tr>
+      <tr><td class="desc">Vintage All Glass Teapot</td><td class="paid">$7</td><td class="sold">$40</td><td class="margin"><span class="pill high">471%</span></td></tr>
+      <tr><td class="desc">Glass Lamp Shade + Metal Base (two separate pieces)</td><td class="paid">$20</td><td class="sold">$75</td><td class="margin"><span class="pill high">275%</span></td></tr>
+      <tr><td class="desc">Personal Memoirs of U.S. Grant Vol. I &amp; II</td><td class="paid">$80</td><td class="sold">$340</td><td class="margin"><span class="pill high">325%</span></td></tr>
+      <tr><td class="desc">Oak Machinist Chest with Key (20×13×8.5)</td><td class="paid">$155</td><td class="sold">$250</td><td class="margin"><span class="pill mid">61%</span></td></tr>
+      <tr><td class="desc">Ralph Lauren Pourers</td><td class="paid">$16</td><td class="sold">$40</td><td class="margin"><span class="pill high">150%</span></td></tr>
+      <tr><td class="desc">Bosch Planer 3258</td><td class="paid">$4</td><td class="sold">$30</td><td class="margin"><span class="pill high">650%</span></td></tr>
+      <tr><td class="desc">Realistic CB-Phone 40</td><td class="paid">$5</td><td class="sold">$27</td><td class="margin"><span class="pill high">440%</span></td></tr>
+      <tr><td class="desc">Cast Iron Cooking Pot with Handle</td><td class="paid">$9</td><td class="sold">$27</td><td class="margin"><span class="pill high">200%</span></td></tr>
+      <tr><td class="desc">Dukes of Hazzard Folding Tray</td><td class="paid">$5</td><td class="sold">$20</td><td class="margin"><span class="pill high">300%</span></td></tr>
+      <tr><td class="desc">Victorian Village Collectibles — Olde Town Village</td><td class="paid">$6</td><td class="sold">$15</td><td class="margin"><span class="pill mid">150%</span></td></tr>
+      <tr><td class="desc">Victorian Village Collectibles — Train Station</td><td class="paid">$6</td><td class="sold">$15</td><td class="margin"><span class="pill mid">150%</span></td></tr>
+      <tr><td class="desc">Kodak Instamatic 100 Outfit</td><td class="paid">$11</td><td class="sold">$30</td><td class="margin"><span class="pill high">173%</span></td></tr>
+      <tr><td class="desc">Realistic TRC-24C CB Radio with Mic</td><td class="paid">$2</td><td class="sold">$7</td><td class="margin"><span class="pill high">250%</span></td></tr>
+      <tr><td class="desc">Artist Signed Carved Rainbow Trout Decoy (15")</td><td class="paid">$35</td><td class="sold">$70</td><td class="margin"><span class="pill high">100%</span></td></tr>
+      <tr><td class="desc">8 Retro Cartoon Character Glasses</td><td class="paid">$13</td><td class="sold">$42.50</td><td class="margin"><span class="pill high">227%</span></td></tr>
+      <tr><td class="desc">Wade Ark England Figurines (Made in England)</td><td class="paid">$17</td><td class="sold">$35</td><td class="margin"><span class="pill high">106%</span></td></tr>
+      <tr><td class="desc">Signed Italy Dog Head Ceramic Lamp</td><td class="paid">$35</td><td class="sold">$35</td><td class="margin"><span class="pill mid">0%</span></td></tr>
+      <tr><td class="desc">Ken Harris Hand Painted Duck Decoy</td><td class="paid">$62.50</td><td class="sold">$96.50</td><td class="margin"><span class="pill mid">54%</span></td></tr>
+      <tr><td class="desc">Vintage Waffle Maker (works)</td><td class="paid">$2</td><td class="sold">$20</td><td class="margin"><span class="pill high">900%</span></td></tr>
+      <tr><td class="desc">Antique Oak 4-Drawer Dresser (40×17×32)</td><td class="paid">$40</td><td class="sold">$60</td><td class="margin"><span class="pill mid">50%</span></td></tr>
+      <tr><td class="desc">Hallmark Christmas Lot</td><td class="paid">$17</td><td class="sold">$25</td><td class="margin"><span class="pill mid">47%</span></td></tr>
+      <tr><td class="desc">1999 Painted 1oz Silver Eagle .999 Fine Silver</td><td class="paid">$32</td><td class="sold">$50</td><td class="margin"><span class="pill mid">56%</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <div class="final-cta-inner">
+    <p class="eye">Your turn</p>
+    <h2>These are real numbers.<br><span class="gold">Yours can be too.</span></h2>
+    <p>One free auction. Every item analyzed. Real sold prices before you bid a dollar.</p>
+    <a class="btn-primary" href="https://onboarding.bidsquire.com/">Check Your County Now</a>
+    <p class="noccc">No credit card required · First auction free · Cancel anytime</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Bid<span>squire</span></div>
+  <div class="footer-copy">© 2025 Bidsquire. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

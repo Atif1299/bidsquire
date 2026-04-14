@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bidsquire — Pricing</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Barlow+Condensed:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0d1f;font-family:'DM Sans',sans-serif;color:#fff}
+
+/* NAV */
+nav{max-width:1100px;margin:0 auto;padding:28px 56px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;color:#fff}
+.logo span{color:#e8c547}
+.nav-cta{display:inline-block;border:1px solid rgba(232,197,71,.5);color:#e8c547;font-size:13px;font-weight:500;padding:9px 22px;border-radius:6px;text-decoration:none;}
+
+/* HERO */
+.hero{max-width:1100px;margin:0 auto;padding:72px 56px 56px;text-align:center}
+.eye{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#e8c547;opacity:.75;margin-bottom:18px}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-size:58px;font-weight:700;line-height:1.05;letter-spacing:-.3px;margin-bottom:20px}
+.gold{color:#e8c547}
+.hero-sub{font-size:18px;color:rgba(255,255,255,.55);max-width:640px;margin:0 auto 16px;line-height:1.65}
+.hw{display:inline-block;margin:0 auto 56px;padding:16px 24px;border-left:3px solid rgba(232,197,71,.4);text-align:left;max-width:640px}
+.hw p{font-family:'Caveat',cursive;font-size:22px;font-weight:600;color:rgba(255,255,255,.82);line-height:1.6}
+
+/* NO COMPETITION BANNER */
+.no-comp{max-width:1100px;margin:0 auto 56px;padding:0 56px}
+.no-comp-inner{background:linear-gradient(135deg,rgba(232,197,71,.12) 0%,rgba(232,197,71,.04) 100%);border:1px solid rgba(232,197,71,.3);border-radius:16px;padding:32px 40px;display:flex;align-items:center;gap:32px}
+.no-comp-icon{font-size:48px;flex-shrink:0}
+.no-comp-text h2{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;color:#e8c547;margin-bottom:8px}
+.no-comp-text p{font-size:15px;color:rgba(255,255,255,.65);line-height:1.65;max-width:700px}
+.no-comp-text strong{color:rgba(255,255,255,.9);font-weight:500}
+
+/* COUNTY TYPES */
+.types-section{max-width:1100px;margin:0 auto 56px;padding:0 56px}
+.types-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:20px}
+.types-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.type-card{background:#0f1128;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:28px 28px 32px;display:flex;flex-direction:column}
+.type-tag{display:inline-block;background:rgba(232,197,71,.1);border:1px solid rgba(232,197,71,.2);border-radius:4px;padding:4px 12px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#e8c547;margin-bottom:20px;align-self:flex-start}
+.type-price{font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:700;color:#fff;line-height:1;margin-bottom:4px}
+.type-price span{font-size:20px;font-weight:400;color:rgba(255,255,255,.4)}
+.type-price-note{font-size:12px;color:rgba(255,255,255,.3);margin-bottom:20px;letter-spacing:.03em}
+.type-divider{border:none;border-top:1px solid rgba(255,255,255,.08);margin:0 0 20px}
+.type-county-def{font-size:13px;color:rgba(255,255,255,.55);line-height:1.6;margin-bottom:20px;flex:1}
+.type-county-def strong{color:rgba(255,255,255,.85);display:block;font-size:14px;margin-bottom:6px}
+.type-examples{font-size:12px;color:rgba(255,255,255,.3);font-style:italic}
+.type-cta{display:inline-block;background:#e8c547;color:#0f1128;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;padding:13px 24px;border-radius:7px;text-decoration:none;text-align:center;margin-top:auto}
+.type-cta:hover{opacity:.88}
+
+/* MULTI-COUNTY */
+.multi{max-width:1100px;margin:0 auto 56px;padding:0 56px}
+.multi-inner{background:#0f1128;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:40px 48px;display:flex;align-items:center;justify-content:space-between;gap:48px}
+.multi-left{flex:1}
+.multi-left .eye{text-align:left}
+.multi-left h2{font-family:'Barlow Condensed',sans-serif;font-size:38px;font-weight:700;line-height:1.05;letter-spacing:-.2px;margin-bottom:14px}
+.multi-left p{font-size:15px;color:rgba(255,255,255,.55);line-height:1.65}
+.multi-left p strong{color:rgba(255,255,255,.85);font-weight:500}
+.multi-right{flex-shrink:0}
+.multi-example{display:flex;flex-direction:column;gap:10px}
+.county-pill{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:24px;min-width:260px}
+.county-pill .name{font-size:13px;color:rgba(255,255,255,.7)}
+.county-pill .price{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#e8c547}
+.county-pill .badge{font-size:10px;background:rgba(232,197,71,.15);border:1px solid rgba(232,197,71,.3);color:#e8c547;padding:3px 8px;border-radius:3px;letter-spacing:.06em}
+.multi-total{margin-top:14px;padding:12px 16px;background:rgba(232,197,71,.08);border:1px solid rgba(232,197,71,.2);border-radius:8px;display:flex;justify-content:space-between;align-items:center}
+.multi-total .label{font-size:13px;color:rgba(255,255,255,.5)}
+.multi-total .amount{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:700;color:#e8c547}
+
+/* WHAT'S INCLUDED */
+.includes{max-width:1100px;margin:0 auto 56px;padding:0 56px}
+.includes-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:20px}
+.includes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.include-item{display:flex;align-items:flex-start;gap:14px;padding:20px 24px;background:#0f1128;border:1px solid rgba(255,255,255,.06);border-radius:10px}
+.include-icon{font-size:22px;flex-shrink:0;margin-top:2px}
+.include-text strong{font-size:14px;color:#fff;display:block;margin-bottom:4px}
+.include-text p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.5}
+
+/* FINAL CTA */
+.final-cta{max-width:1100px;margin:0 auto 0;background:linear-gradient(160deg,#1a1e40 0%,#0f1128 60%,#0e1020 100%);border-radius:20px;padding:80px 56px;text-align:center;position:relative;overflow:hidden}
+.final-cta::before{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(232,197,71,.07) 0%,transparent 70%);pointer-events:none}
+.final-cta h2{font-family:'Barlow Condensed',sans-serif;font-size:48px;font-weight:700;line-height:1.05;letter-spacing:-.3px;margin-bottom:16px}
+.final-cta p{font-size:16px;color:rgba(255,255,255,.5);max-width:480px;margin:0 auto 36px;line-height:1.65}
+.btn-primary{display:inline-block;background:#e8c547;color:#0f1128;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;padding:16px 44px;border-radius:8px;text-decoration:none}
+.btn-primary:hover{opacity:.88}
+.noccc{font-size:12px;color:rgba(255,255,255,.3);margin-top:12px;letter-spacing:.03em}
+
+/* FOOTER */
+footer{max-width:1100px;margin:0 auto;padding:32px 56px;display:flex;align-items:center;justify-content:space-between}
+.footer-logo{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:rgba(255,255,255,.3)}
+.footer-logo span{color:rgba(232,197,71,.5)}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.2)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Bid<span>squire</span></div>
+  <a class="nav-cta" href="https://onboarding.bidsquire.com/">Check Your County</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="eye">Pricing</p>
+  <h1>One license.<br><span class="gold">One reseller. Forever.</span></h1>
+  <p class="hero-sub">Your tier is set automatically by your county type. No plans to choose. No upsells. Just your county — locked exclusively to you.</p>
+  <div class="hw">
+    <p>We sell one license per county. Not two. Not ever. Because we know that the moment a second person gets the same data in the same county, neither of them wins.</p>
+  </div>
+</div>
+
+<!-- NO COMPETITION BANNER -->
+<div class="no-comp">
+  <div class="no-comp-inner">
+    <div class="no-comp-icon">🔒</div>
+    <div class="no-comp-text">
+      <h2>Zero Competition. Guaranteed.</h2>
+      <p>Bidsquire is built on a simple truth: <strong>selling the same county to two resellers means only the auctioneer wins.</strong> We refuse to do that. Every county in the US gets exactly one license — and when it's gone, it's gone permanently. No waitlists. No exceptions. This isn't a marketing line. It's the foundation of how we built this business.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TIER CARDS -->
+<div class="types-section">
+  <p class="types-label">Your tier is determined by your county type</p>
+  <div class="types-grid">
+
+    <div class="type-card">
+      <span class="type-tag">Rural</span>
+      <div class="type-price">$99<span>/mo</span></div>
+      <p class="type-price-note">Billed monthly · Cancel anytime</p>
+      <hr class="type-divider">
+      <div class="type-county-def">
+        <strong>What makes a county Rural?</strong>
+        Lower population density, smaller metro areas, and auction markets with less competition for inventory. These counties often have the best find-to-value ratios — less competition, more hidden gems.
+        <p class="type-examples">Examples: most counties outside major metro areas across the Midwest, South, and rural West.</p>
+      </div>
+      <a class="type-cta" href="https://onboarding.bidsquire.com/">Check If Your County Is Rural →</a>
+    </div>
+
+    <div class="type-card">
+      <span class="type-tag">Suburban</span>
+      <div class="type-price">$199<span>/mo</span></div>
+      <p class="type-price-note">Billed monthly · Cancel anytime</p>
+      <hr class="type-divider">
+      <div class="type-county-def">
+        <strong>What makes a county Suburban?</strong>
+        Mid-size population centers and counties adjacent to major metros. Strong auction volume with a healthy mix of estate sales, storage unit auctions, and online lots.
+        <p class="type-examples">Examples: outer counties surrounding cities like Atlanta, Dallas, Phoenix, and similar metros.</p>
+      </div>
+      <a class="type-cta" href="https://onboarding.bidsquire.com/">Check If Your County Is Suburban →</a>
+    </div>
+
+    <div class="type-card">
+      <span class="type-tag">Urban</span>
+      <div class="type-price">$299<span>/mo</span></div>
+      <p class="type-price-note">Billed monthly · Cancel anytime</p>
+      <hr class="type-divider">
+      <div class="type-county-def">
+        <strong>What makes a county Urban?</strong>
+        High-density metro counties with the highest auction volume and inventory turnover. The most active resale markets in the country — and the most valuable licenses we sell.
+        <p class="type-examples">Examples: Miami-Dade, Cook County (Chicago), Los Angeles County, Kings County (Brooklyn).</p>
+      </div>
+      <a class="type-cta" href="https://onboarding.bidsquire.com/">Check If Your County Is Urban →</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- MULTI-COUNTY -->
+<div class="multi">
+  <div class="multi-inner">
+    <div class="multi-left">
+      <p class="eye">Own Multiple Counties</p>
+      <h2>Want to expand your <span class="gold">territory?</span></h2>
+      <p>You can hold licenses in as many counties as you want — as long as they're available. Each county is priced independently by its type. Some resellers cover an entire region. <strong>It all comes down to what's still open.</strong></p>
+    </div>
+    <div class="multi-right">
+      <div class="multi-example">
+        <div class="county-pill">
+          <span class="name">Jefferson County <span class="badge">RURAL</span></span>
+          <span class="price">$99/mo</span>
+        </div>
+        <div class="county-pill">
+          <span class="name">Douglas County <span class="badge">SUBURBAN</span></span>
+          <span class="price">$199/mo</span>
+        </div>
+        <div class="county-pill">
+          <span class="name">Denver County <span class="badge">URBAN</span></span>
+          <span class="price">$299/mo</span>
+        </div>
+        <div class="multi-total">
+          <span class="label">3 counties · exclusive territory</span>
+          <span class="amount">$597/mo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT'S INCLUDED -->
+<div class="includes">
+  <p class="includes-label">Everything included in every license</p>
+  <div class="includes-grid">
+    <div class="include-item">
+      <div class="include-icon">🔍</div>
+      <div class="include-text">
+        <strong>Full Auction Analysis</strong>
+        <p>Every item in every HiBid auction in your county — photos, descriptions, and comparable sales — analyzed automatically.</p>
+      </div>
+    </div>
+    <div class="include-item">
+      <div class="include-icon">📊</div>
+      <div class="include-text">
+        <strong>Live eBay Comps</strong>
+        <p>Real sold prices from identical or similar items on eBay, pulled before you bid so you always know your ceiling.</p>
+      </div>
+    </div>
+    <div class="include-item">
+      <div class="include-icon">📸</div>
+      <div class="include-text">
+        <strong>Post-Win Re-Analysis</strong>
+        <p>Upload close-up photos after you win. Bidsquire re-analyzes with maker's marks, signatures, and condition to pinpoint exact market value.</p>
+      </div>
+    </div>
+    <div class="include-item">
+      <div class="include-icon">🏷️</div>
+      <div class="include-text">
+        <strong>eBay & Etsy Listing Prices</strong>
+        <p>Precise listing prices based on recent sold comps, so you price right the first time and move inventory fast.</p>
+      </div>
+    </div>
+    <div class="include-item">
+      <div class="include-icon">🔒</div>
+      <div class="include-text">
+        <strong>Exclusive County License</strong>
+        <p>No one else in your county gets this data. Ever. Your competitive advantage is permanently locked in.</p>
+      </div>
+    </div>
+    <div class="include-item">
+      <div class="include-icon">🆓</div>
+      <div class="include-text">
+        <strong>First Auction Free</strong>
+        <p>Try Bidsquire on one full auction before you pay anything. No credit card required to get started.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <p class="eye">Check Availability</p>
+  <h2>Is your county <span class="gold">still open?</span></h2>
+  <p>Counties are selling. Check yours now — it takes 30 seconds and no credit card.</p>
+  <a class="btn-primary" href="https://onboarding.bidsquire.com/">Check Your County Now</a>
+  <p class="noccc">No credit card required · Your first auction is free</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Bid<span>squire</span></div>
+  <div class="footer-copy">© 2025 Bidsquire. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

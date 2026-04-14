@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bidsquire — How It Works</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Barlow+Condensed:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0d1f;font-family:'DM Sans',sans-serif;color:#fff}
+
+nav{max-width:1100px;margin:0 auto;padding:28px 56px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;color:#fff}
+.logo span{color:#e8c547}
+.nav-cta{display:inline-block;border:1px solid rgba(232,197,71,.5);color:#e8c547;font-size:13px;font-weight:500;padding:9px 22px;border-radius:6px;text-decoration:none}
+.gold{color:#e8c547}
+.eye{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#e8c547;opacity:.75;margin-bottom:18px}
+.btn-primary{display:inline-block;background:#e8c547;color:#0f1128;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;padding:15px 40px;border-radius:8px;text-decoration:none}
+.btn-primary:hover{opacity:.88}
+.noccc{font-size:12px;color:rgba(255,255,255,.3);margin-top:12px;letter-spacing:.03em}
+
+.hero{max-width:1100px;margin:0 auto;padding:72px 56px 80px;text-align:center}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-size:62px;font-weight:700;line-height:1.0;letter-spacing:-.4px;margin-bottom:20px}
+.hero p{font-size:18px;color:rgba(255,255,255,.55);max-width:580px;margin:0 auto 40px;line-height:1.65}
+
+/* ── STEP LAYOUT ── */
+.step-section{max-width:1100px;margin:0 auto;padding:0 56px 80px}
+
+/* 1. Badge + headline full width */
+.step-head{margin-bottom:32px}
+.step-num-badge{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.step-circle{width:52px;height:52px;border-radius:50%;border:1px solid rgba(232,197,71,.4);background:rgba(232,197,71,.06);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:#e8c547;flex-shrink:0}
+.step-label-text{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#e8c547;opacity:.7}
+.step-head h2{font-family:'Barlow Condensed',sans-serif;font-size:46px;font-weight:700;line-height:1.05;letter-spacing:-.3px}
+
+/* 2. Text left, visual right */
+.step-body{display:grid;grid-template-columns:1fr 400px;gap:48px;align-items:start}
+.step-body.flip{grid-template-columns:400px 1fr}
+.step-body.flip .step-copy{order:2}
+.step-body.flip .step-visual{order:1}
+
+.step-copy p{font-size:15px;color:rgba(255,255,255,.55);line-height:1.75;margin-bottom:14px}
+.step-copy p:last-child{margin-bottom:0}
+.step-copy p strong{color:rgba(255,255,255,.85);font-weight:500}
+.step-badge{display:inline-block;background:rgba(232,197,71,.1);border:1px solid rgba(232,197,71,.25);border-radius:5px;padding:6px 14px;font-size:12px;color:#e8c547;letter-spacing:.04em;margin-top:8px}
+
+/* ── VISUAL PANELS ── */
+.step-visual{background:#0f1128;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:22px}
+
+/* Step 1 */
+.url-box{background:#0a0d1f;border:1px solid rgba(255,255,255,.12);border-radius:7px;padding:11px 14px;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.url-icon{font-size:13px}
+.url-text{font-size:11px;color:rgba(255,255,255,.3);font-family:monospace;flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.url-btn{background:#e8c547;color:#0f1128;font-size:11px;font-weight:600;padding:5px 12px;border-radius:4px;white-space:nowrap}
+.scan-rows{display:flex;flex-direction:column;gap:6px}
+.scan-row{background:#161a36;border:1px solid rgba(255,255,255,.06);border-radius:5px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center}
+.scan-row .item-name{font-size:11px;color:rgba(255,255,255,.5)}
+.scan-row .scan-ok{font-size:11px;color:#e8c547}
+.scan-count{margin-top:10px;font-size:10px;color:rgba(255,255,255,.2);text-align:center;letter-spacing:.06em;text-transform:uppercase}
+
+/* Step 2 */
+.comp-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.comp-item-name{font-size:12px;color:rgba(255,255,255,.65);font-weight:500}
+.comp-badge-sm{font-size:10px;background:rgba(232,197,71,.12);border:1px solid rgba(232,197,71,.25);color:#e8c547;padding:3px 8px;border-radius:3px}
+.comp-rows{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.comp-row{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#0a0d1f;border-radius:5px}
+.comp-row .comp-title{font-size:11px;color:rgba(255,255,255,.4)}
+.comp-row .comp-price{font-size:12px;color:#fff;font-weight:500}
+.verdict-bar{background:rgba(232,197,71,.08);border:1px solid rgba(232,197,71,.2);border-radius:6px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center}
+.verdict-label{font-size:11px;color:rgba(232,197,71,.7);text-transform:uppercase;letter-spacing:.07em}
+.verdict-range{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#e8c547}
+
+/* Step 3 */
+.upload-area{border:2px dashed rgba(232,197,71,.3);border-radius:10px;padding:22px;text-align:center;margin-bottom:14px}
+.upload-area .u-icon{font-size:28px;margin-bottom:8px}
+.upload-area strong{color:rgba(232,197,71,.7);display:block;font-size:12px;margin-bottom:5px}
+.upload-area p{font-size:11px;color:rgba(255,255,255,.3);line-height:1.5}
+.refine-tags{display:flex;flex-wrap:wrap;gap:7px}
+.rtag{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:4px 9px;font-size:11px;color:rgba(255,255,255,.4)}
+.rtag.on{border-color:rgba(232,197,71,.3);color:#e8c547;background:rgba(232,197,71,.06)}
+
+/* Step 4 */
+.listing-card{background:#0a0d1f;border:1px solid rgba(255,255,255,.1);border-radius:7px;padding:14px;margin-bottom:8px}
+.listing-card .platform{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.3);margin-bottom:7px}
+.listing-card .listing-title{font-size:12px;color:rgba(255,255,255,.75);margin-bottom:10px;line-height:1.4}
+.listing-card .listing-price-row{display:flex;justify-content:space-between;align-items:center}
+.listing-card .listing-price{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;color:#e8c547}
+.listing-card .listing-basis{font-size:10px;color:rgba(255,255,255,.3);text-align:right;line-height:1.4}
+.listing-note{font-size:10px;color:rgba(255,255,255,.2);text-align:center;letter-spacing:.04em;margin-top:6px}
+
+/* DIVIDER */
+.step-divider{max-width:1100px;margin:0 auto;padding:0 56px 60px;display:flex;align-items:center;gap:20px}
+.step-divider::before,.step-divider::after{content:'';flex:1;border-top:1px solid rgba(255,255,255,.06)}
+.step-divider span{font-size:18px;opacity:.3}
+
+/* WHO IS THIS FOR */
+.for-section{background:#0f1128;padding:80px 0}
+.for-inner{max-width:1100px;margin:0 auto;padding:0 56px}
+.for-inner h2{font-family:'Barlow Condensed',sans-serif;font-size:44px;font-weight:700;letter-spacing:-.2px;margin-bottom:36px}
+.for-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.for-card{background:#161a36;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:24px 26px}
+.for-card .for-icon{font-size:26px;margin-bottom:12px}
+.for-card strong{font-size:15px;color:#fff;display:block;margin-bottom:8px}
+.for-card p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.6}
+
+/* FAQ */
+.faq-section{max-width:1100px;margin:0 auto;padding:80px 56px}
+.faq-section h2{font-family:'Barlow Condensed',sans-serif;font-size:44px;font-weight:700;letter-spacing:-.2px;margin-bottom:36px}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.faq-item{padding:22px 24px;background:#0f1128;border:1px solid rgba(255,255,255,.07);border-radius:12px}
+.faq-item strong{font-size:14px;color:#fff;display:block;margin-bottom:8px}
+.faq-item p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.65}
+.faq-item p strong{display:inline;font-size:13px;color:rgba(255,255,255,.8)}
+
+/* FINAL CTA */
+.final-cta{max-width:1100px;margin:0 auto;padding:0 56px 80px}
+.final-cta-inner{background:linear-gradient(160deg,#1a1e40 0%,#0f1128 60%,#0e1020 100%);border-radius:20px;padding:80px 56px;text-align:center;position:relative;overflow:hidden}
+.final-cta-inner::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(232,197,71,.07) 0%,transparent 70%);pointer-events:none}
+.final-cta-inner h2{font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:700;line-height:1.05;letter-spacing:-.3px;margin-bottom:16px}
+.final-cta-inner p{font-size:16px;color:rgba(255,255,255,.5);max-width:480px;margin:0 auto 36px;line-height:1.65}
+
+footer{max-width:1100px;margin:0 auto;padding:32px 56px;display:flex;align-items:center;justify-content:space-between}
+.footer-logo{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:rgba(255,255,255,.3)}
+.footer-logo span{color:rgba(232,197,71,.5)}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.2)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Bid<span>squire</span></div>
+  <a class="nav-cta" href="https://onboarding.bidsquire.com/">Try It Free</a>
+</nav>
+
+<div class="hero">
+  <p class="eye">How It Works</p>
+  <h1>From auction listing<br>to <span class="gold">eBay profit.</span></h1>
+  <p>Bidsquire does the research. You make the profit. Know what everything is actually <em>selling for</em> — not some mythical at-auction price, but real-world quick-flip sales. Know before you spend a dollar, or a minute.</p>
+  <a class="btn-primary" href="https://onboarding.bidsquire.com/">Start Your Free Auction</a>
+  <p class="noccc">No credit card required</p>
+</div>
+
+<!-- STEP 1 -->
+<div class="step-section">
+  <div class="step-head">
+    <div class="step-num-badge">
+      <div class="step-circle">1</div>
+      <span class="step-label-text">Scout</span>
+    </div>
+    <h2>Paste any <span class="gold">HiBid auction URL.</span> We do the rest.</h2>
+  </div>
+  <div class="step-body">
+    <div class="step-copy">
+      <p>Find an upcoming auction on HiBid.com, copy the URL, and paste it into Bidsquire. That's the entire job on your end.</p>
+      <p>Our AI immediately goes to work — scanning <strong>every single item</strong> in that auction. Photos, lot descriptions, condition notes, titles. Every item. Automatically. No clicking through listings one by one.</p>
+      <p>Most auctions are fully analyzed in minutes.</p>
+      <span class="step-badge">Works on any HiBid auction, anywhere in the US</span>
+    </div>
+    <div class="step-visual">
+      <div class="url-box">
+        <span class="url-icon">🔗</span>
+        <span class="url-text">hibid.com/auction/183920/miami-estate-sale-lot-482</span>
+        <span class="url-btn">Analyze</span>
+      </div>
+      <div class="scan-rows">
+        <div class="scan-row"><span class="item-name">Lot 12 — Victorian writing desk</span><span class="scan-ok">✓ Analyzed</span></div>
+        <div class="scan-row"><span class="item-name">Lot 13 — Vintage Coca-Cola tin signs (3)</span><span class="scan-ok">✓ Analyzed</span></div>
+        <div class="scan-row"><span class="item-name">Lot 14 — Antique oil lamp, brass</span><span class="scan-ok">✓ Analyzed</span></div>
+        <div class="scan-row"><span class="item-name">Lot 15 — Sterling silver flatware set</span><span class="scan-ok">✓ Analyzed</span></div>
+        <div class="scan-row"><span class="item-name">Lot 16 — 1968 Sports Illustrated lot</span><span class="scan-ok">✓ Analyzed</span></div>
+      </div>
+      <p class="scan-count">247 items analyzed · 3 min 12 sec</p>
+    </div>
+  </div>
+</div>
+
+<div class="step-divider"><span>↓</span></div>
+
+<!-- STEP 2 -->
+<div class="step-section">
+  <div class="step-head">
+    <div class="step-num-badge">
+      <div class="step-circle">2</div>
+      <span class="step-label-text">Bid Smart</span>
+    </div>
+    <h2>See <span class="gold">real sold prices</span> before you click Bid.</h2>
+  </div>
+  <div class="step-body flip">
+    <div class="step-copy">
+      <p>For every item in the auction, Bidsquire shows you what identical or similar items have <strong>actually sold for on eBay</strong> — not estimates, not guesses, not algorithmically inflated valuations.</p>
+      <p>Real listings. Real buyers. Real money. Pulled from recent eBay sold data so you know exactly what the market is paying right now.</p>
+      <p>You'll know your ceiling before you bid a dollar. No more guessing. No more winning something and wondering if you overpaid.</p>
+      <span class="step-badge">Powered by live eBay comparable sales</span>
+    </div>
+    <div class="step-visual">
+      <div class="comp-header">
+        <span class="comp-item-name">Lot 13 — Coca-Cola tin signs</span>
+        <span class="comp-badge-sm">eBay COMPS</span>
+      </div>
+      <div class="comp-rows">
+        <div class="comp-row"><span class="comp-title">Coca-Cola tin sign 1950s oval — Mar 2025</span><span class="comp-price">$87</span></div>
+        <div class="comp-row"><span class="comp-title">Vintage Coke tin sign lot x3 — Feb 2025</span><span class="comp-price">$142</span></div>
+        <div class="comp-row"><span class="comp-title">Antique soda tin sign embossed — Mar 2025</span><span class="comp-price">$64</span></div>
+        <div class="comp-row"><span class="comp-title">1940s Coca-Cola button sign — Jan 2025</span><span class="comp-price">$110</span></div>
+      </div>
+      <div class="verdict-bar">
+        <span class="verdict-label">Estimated resale range</span>
+        <span class="verdict-range">$64 — $142</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="step-divider"><span>↓</span></div>
+
+<!-- STEP 3 -->
+<div class="step-section">
+  <div class="step-head">
+    <div class="step-num-badge">
+      <div class="step-circle">3</div>
+      <span class="step-label-text">Win &amp; Refine</span>
+    </div>
+    <h2>Won something? <span class="gold">Now get the real number.</span></h2>
+  </div>
+  <div class="step-body">
+    <div class="step-copy">
+      <p>Auction photos are often low resolution, poorly lit, or shot from too far away. That's why Bidsquire's first pass gives you a range, not a pinpoint.</p>
+      <p>Once you win and have the item in hand, upload your own close-up photos — especially <strong>maker's marks, signatures, stamps, hallmarks, and condition details</strong>. Bidsquire re-analyzes with that clarity.</p>
+      <p>A hidden signature or rare maker's mark can turn a $20 win into a $2,000 sale. You won't know until you look — and now you'll know what to look for.</p>
+      <span class="step-badge">A hidden mark can 10× the price</span>
+    </div>
+    <div class="step-visual">
+      <div class="upload-area">
+        <div class="u-icon">📸</div>
+        <strong>Upload your close-up photos</strong>
+        <p>Add as many angles as you need — the more detail, the better the analysis.</p>
+      </div>
+      <div class="refine-tags">
+        <span class="rtag on">Maker's mark ✓</span>
+        <span class="rtag on">Signature ✓</span>
+        <span class="rtag on">Condition ✓</span>
+        <span class="rtag on">Hallmark ✓</span>
+        <span class="rtag">Date stamp</span>
+        <span class="rtag">Pattern name</span>
+        <span class="rtag">Country of origin</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="step-divider"><span>↓</span></div>
+
+<!-- STEP 4 -->
+<div class="step-section">
+  <div class="step-head">
+    <div class="step-num-badge">
+      <div class="step-circle">4</div>
+      <span class="step-label-text">List &amp; Profit</span>
+    </div>
+    <h2>Price it right on <span class="gold">eBay or Etsy.</span> First time.</h2>
+  </div>
+  <div class="step-body flip">
+    <div class="step-copy">
+      <p>The most common mistake resellers make isn't buying the wrong thing — it's pricing it wrong. Too high and it sits. Too low and you leave money behind.</p>
+      <p>Bidsquire gives you <strong>precise listing prices based on recent sold comps</strong> — not what people are asking, but what buyers have actually paid. The difference matters.</p>
+      <p>List confidently, move inventory fast, and repeat. That's the whole game.</p>
+    </div>
+    <div class="step-visual">
+      <div class="listing-card">
+        <div class="platform">eBay listing recommendation</div>
+        <div class="listing-title">Vintage Coca-Cola Tin Sign Lot x3 — 1940s–1950s Original</div>
+        <div class="listing-price-row">
+          <span class="listing-price">$124</span>
+          <span class="listing-basis">Based on 4 recent<br>eBay sold comps</span>
+        </div>
+      </div>
+      <div class="listing-card">
+        <div class="platform">Etsy listing recommendation</div>
+        <div class="listing-title">Antique Coca-Cola Advertising Signs — Vintage Soda Collectibles Set</div>
+        <div class="listing-price-row">
+          <span class="listing-price">$138</span>
+          <span class="listing-basis">Etsy vintage market<br>commands premium</span>
+        </div>
+      </div>
+      <p class="listing-note">Paid $18 at auction · Recommended list: $124–$138</p>
+    </div>
+  </div>
+</div>
+
+<!-- WHO IS THIS FOR -->
+<div class="for-section">
+  <div class="for-inner">
+    <p class="eye">Who Uses Bidsquire</p>
+    <h2>Built for resellers who want <span class="gold">every possible edge.</span></h2>
+    <div class="for-grid">
+      <div class="for-card"><div class="for-icon">📦</div><strong>eBay &amp; Etsy Resellers</strong><p>You already know how to list and ship. Bidsquire gives you the intelligence to buy smarter and price right the first time.</p></div>
+      <div class="for-card"><div class="for-icon">🏠</div><strong>Estate Sale &amp; Auction Regulars</strong><p>You've been going for years. Now you go with data. Know what's worth bidding on before the auctioneer opens the floor.</p></div>
+      <div class="for-card"><div class="for-icon">🔄</div><strong>Side Hustle Flippers</strong><p>You're building something real. Bidsquire helps you build it faster by cutting the guesswork on every single lot.</p></div>
+      <div class="for-card"><div class="for-icon">🏪</div><strong>Antique Dealers</strong><p>You know your categories. Bidsquire knows the current market. Together you stop leaving money on the table.</p></div>
+      <div class="for-card"><div class="for-icon">📚</div><strong>Collectors</strong><p>You buy what you love — but you want to know what it's worth. Bidsquire tells you before you bid, not after.</p></div>
+      <div class="for-card"><div class="for-icon">🚛</div><strong>Storage Unit Buyers</strong><p>Analyze the items you can see through the door before you commit to the unit.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-section">
+  <p class="eye">Common Questions</p>
+  <h2>Everything you want <span class="gold">to know.</span></h2>
+  <div class="faq-grid">
+    <div class="faq-item"><strong>Does it work on all HiBid auctions?</strong><p>Yes. Any public HiBid auction in the US. Paste the URL and Bidsquire analyzes every item in that auction regardless of category or location.</p></div>
+    <div class="faq-item"><strong>How current is the eBay data?</strong><p>Bidsquire pulls from recent eBay <strong>sold listings</strong> — actual completed sales, not asking prices. The data reflects what the market is paying right now.</p></div>
+    <div class="faq-item"><strong>What if the auction photo quality is poor?</strong><p>That's exactly what Step 3 is for. The first pass gives you a range. Once you win and photograph the item yourself, Bidsquire re-analyzes to pinpoint the value.</p></div>
+    <div class="faq-item"><strong>How long does the analysis take?</strong><p>Most auctions are fully analyzed within a few minutes. Larger auctions may take slightly longer, but results start appearing as each lot is processed.</p></div>
+    <div class="faq-item"><strong>What's included in the free trial?</strong><p>One complete auction analyzed in full — every item, every comp, every recommendation. No credit card. No commitment.</p></div>
+    <div class="faq-item"><strong>Can I use it for categories I don't know?</strong><p><strong>That's exactly the point.</strong> You already know how to hustle. Bidsquire gives you the market intelligence to buy smarter, price right, and move faster than anyone else in your county.</p></div>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <div class="final-cta-inner">
+    <p class="eye">Try It Free</p>
+    <h2>Your first auction<br><span class="gold">is on us.</span></h2>
+    <p>See real sold prices on every item before you spend a dollar. No credit card. No commitment. Just better bids.</p>
+    <a class="btn-primary" href="https://onboarding.bidsquire.com/">Start Your Free Auction Now</a>
+    <p class="noccc">No credit card required · One full auction analyzed free · Cancel anytime</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Bid<span>squire</span></div>
+  <div class="footer-copy">© 2025 Bidsquire. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

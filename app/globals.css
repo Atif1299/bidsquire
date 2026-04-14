@@ -2,8 +2,11 @@
 
 :root
 {
-  --background: #0a0e17;
-  --foreground: #f1f5f9;
+  --background: #0a0d1f;
+  --foreground: #ffffff;
+  --gold: #e8c547;
+  --card-bg: #0f1128;
+  --border: rgba(255, 255, 255, 0.08);
 }
 
 @theme inline
@@ -11,7 +14,15 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-dm-sans);
-  --font-mono: var(--font-space-mono);
+  --font-heading: var(--font-barlow-condensed);
+  --font-script: var(--font-caveat);
+}
+
+*
+{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html
@@ -24,4 +35,34 @@ body
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.font-heading
+{
+  font-family: var(--font-heading), system-ui, sans-serif;
+}
+
+.font-script
+{
+  font-family: var(--font-script), cursive;
+}
+
+.text-gold
+{
+  color: var(--gold);
+}
+
+.bg-gold
+{
+  background-color: var(--gold);
+}
+
+.bg-card
+{
+  background-color: var(--card-bg);
+}
+
+.border-default
+{
+  border-color: var(--border);
 }

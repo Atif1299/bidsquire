@@ -1,100 +1,32 @@
-"use client";
-
 import Link from "next/link";
-import { useState } from "react";
-import { ButtonLink } from "./ButtonLink";
-
-const SIGNUP_URL = "https://onboarding.bidsquire.com/signup";
-const SIGNIN_URL = "https://app.bidsquire.com/auth/login";
-
-const nav = [
-  { href: "/how-it-works", label: "How It Works" },
-  { href: "/pricing-tiers", label: "Pricing" },
-  { href: "/auction-results", label: "Results" },
-  { href: "/more-auction-results", label: "More Results" },
-] as const;
 
 export function Header() {
-  const [open, setOpen] = useState(false);
-
   return (
-    <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-[#0a0e17]/95 backdrop-blur-md">
-      <div className="mx-auto flex max-w-[1120px] items-center justify-between gap-4 px-6 py-3.5">
-        <Link
-          href="/"
-          className="shrink-0 text-xl font-bold tracking-tight text-slate-100"
-          onClick={() => setOpen(false)}
-        >
-          Bid<span className="text-cyan-400">Squire</span>
+    <nav style={{ maxWidth: '1100px', margin: '0 auto', padding: '28px 56px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <Link href="/" style={{ fontFamily: 'var(--font-barlow-condensed), sans-serif', fontSize: '26px', fontWeight: 700, letterSpacing: '0.5px', color: '#fff', textDecoration: 'none' }}>
+        Bid<span style={{ color: '#e8c547' }}>squire</span>
+      </Link>
+
+      <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
+        <Link href="/how-it-works" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.6)', textDecoration: 'none' }}>
+          How It Works
         </Link>
-
-        <nav
-          className="hidden items-center gap-6 text-sm font-medium text-slate-400 lg:flex"
-          aria-label="Main"
+        <Link href="/pricing-tiers" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.6)', textDecoration: 'none' }}>
+          Pricing
+        </Link>
+        <Link href="/auction-results" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.6)', textDecoration: 'none' }}>
+          Results
+        </Link>
+        <Link href="/more-auction-results" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.6)', textDecoration: 'none' }}>
+          More Results
+        </Link>
+        <a
+          href="https://onboarding.bidsquire.com/"
+          style={{ display: 'inline-block', border: '1px solid rgba(232,197,71,0.5)', color: '#e8c547', fontSize: '13px', fontWeight: 500, padding: '9px 22px', borderRadius: '6px', textDecoration: 'none' }}
         >
-          {nav.map(({ href, label }) => (
-            <Link key={href} href={href} className="hover:text-slate-100">
-              {label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="hidden shrink-0 items-center gap-3 lg:flex">
-          <ButtonLink href={SIGNIN_URL} variant="outline" className="px-4 py-2 text-sm">
-            Sign in
-          </ButtonLink>
-          <ButtonLink href={SIGNUP_URL} variant="primary" className="px-4 py-2 text-sm">
-            Get 500 free credits
-          </ButtonLink>
-        </div>
-
-        <button
-          type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-600 text-slate-200 lg:hidden"
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? (
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          ) : (
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          )}
-        </button>
+          Start Free Trial
+        </a>
       </div>
-
-      {open ? (
-        <div
-          id="mobile-nav"
-          className="border-t border-white/[0.06] bg-[#0a0e17] px-6 py-4 lg:hidden"
-        >
-          <nav className="flex flex-col gap-1" aria-label="Mobile main">
-            {nav.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-300 hover:bg-slate-800/80 hover:text-white"
-                onClick={() => setOpen(false)}
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
-          <div className="mt-4 flex flex-col gap-2 border-t border-slate-800 pt-4">
-            <ButtonLink href={SIGNIN_URL} variant="outline" className="justify-center py-2.5" onClick={() => setOpen(false)}>
-              Sign in
-            </ButtonLink>
-            <ButtonLink href={SIGNUP_URL} variant="primary" className="justify-center py-2.5" onClick={() => setOpen(false)}>
-              Get 500 free credits
-            </ButtonLink>
-          </div>
-        </div>
-      ) : null}
-    </header>
+    </nav>
   );
 }

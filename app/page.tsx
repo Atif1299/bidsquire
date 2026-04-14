@@ -1,174 +1,264 @@
-import Link from "next/link";
-import { CtaBand } from "@/components/CtaBand";
-import { Section } from "@/components/Section";
-import { StatsStrip } from "@/components/StatsStrip";
-import { TrustBadges } from "@/components/TrustBadges";
-import { ButtonLink } from "@/components/ButtonLink";
+import type { Metadata } from "next";
+import { heroImages } from "@/lib/hero-images";
 
-const SIGNUP_URL = "https://onboarding.bidsquire.com/signup";
+export const metadata: Metadata = {
+  title: "Bidsquire — Know the Value Before You Bid",
+  description: "372% Profit Margin. Real Auctions. Real Results. Bidsquire uses AI to scan local auctions and surface estimated values before you bid.",
+};
+
+const heroCards = [
+  { name: "1975 Mego Wonder Woman Doll", paid: "$2", sold: "$35", margin: "1,650%" },
+  { name: "Garfield & Campbell Kids Soup Bowls", paid: "$1", sold: "$14.50", margin: "1,350%" },
+  { name: "Antique Soapstone in Leather Satchel", paid: "$3", sold: "$25", margin: "733%" },
+  { name: "Vintage All Glass Teapot", paid: "$7", sold: "$40", margin: "471%" },
+  { name: "Personal Memoirs of U.S. Grant Vol. I & II", paid: "$80", sold: "$320", margin: "300%" }
+];
+
+const steps = [
+  {
+    number: "1",
+    label: "Scout",
+    title: "Paste Any HiBid Auction URL",
+    description: <>Drop in a HiBid auction link. Bidsquire&apos;s AI <strong>analyzes every single item</strong> — photos, descriptions, lot details — automatically.</>,
+    badge: null
+  },
+  {
+    number: "2",
+    label: "Bid Smart",
+    title: "See Real Sold Prices Before You Bid",
+    description: <>For every item, see <strong>real eBay sold prices</strong> of identical or similar items — not estimates, not guesses. Actual recent sales data, so you know your ceiling before you raise your paddle.</>,
+    badge: "Powered by live eBay comps"
+  },
+  {
+    number: "3",
+    label: "Win & Refine",
+    title: "Upload Your Own Photos",
+    description: <>After you win, upload close-ups — <strong>maker&apos;s marks, signatures, condition details</strong>. Bidsquire re-analyzes with that clarity to pinpoint exact market value.</>,
+    badge: "A hidden mark can 10× the price"
+  },
+  {
+    number: "4",
+    label: "List & Profit",
+    title: "Price It Right on eBay or Etsy",
+    description: <>Get <strong>precise eBay or Etsy listing prices</strong> based on recent sold comps. No guessing, no leaving money on the table. List confidently and move fast.</>,
+    badge: null
+  }
+];
 
 export default function HomePage() {
-
   return (
-    <>
-      <section className="relative flex min-h-[min(88vh,38rem)] flex-col justify-center overflow-hidden py-28 md:min-h-[min(86vh,42rem)] md:py-36 lg:min-h-[min(84vh,44rem)]">
-        <div
-          className="pointer-events-none absolute left-1/2 top-0 h-[600px] w-[800px] -translate-x-1/2 bg-[radial-gradient(ellipse,rgba(34,211,238,0.08)_0%,transparent_70%)]"
-          aria-hidden
-        />
-        <div className="relative mx-auto grid max-w-[1120px] gap-12 px-6 md:grid-cols-2 md:items-center md:gap-16">
-          <div>
-            <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3.5 py-1.5 text-sm font-medium text-cyan-400">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400" />
-              AI-assisted local auction intelligence
-            </p>
-            <h1 className="text-4xl font-bold leading-[1.1] tracking-tight text-slate-50 md:text-5xl lg:text-[3.5rem]">
-              Know what it&apos;s{" "}
-              <em className="not-italic text-cyan-400">really worth</em> before you bid
-            </h1>
-            <p className="mt-6 max-w-lg text-lg leading-relaxed text-slate-400">
-              BidSquire pulls together local online auctions and surfaces estimated value context next to the current
-              bid—so you move faster than guesswork and save credits for the lots that deserve a deeper look.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <ButtonLink href={SIGNUP_URL} variant="primary" className="px-8 py-3.5 text-base">
-                Get 500 free credits
-              </ButtonLink>
-              <Link
-                href="/how-it-works"
-                className="text-sm font-semibold text-cyan-400 hover:text-cyan-300"
-              >
-                How it works →
-              </Link>
-            </div>
-            <p className="mt-6 text-sm text-slate-500">
-              No credit card required · Ready in about 30 seconds · Then activate from email and sign in to the app
+    <div style={{ background: '#0a0d1f' }}>
+      {/* Hero Section */}
+      <div style={{ background: '#0f1128', borderRadius: '20px' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '72px 56px' }}>
+          <p style={{ fontSize: '10px', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#e8c547', opacity: 0.75, marginBottom: '18px' }}>
+            Bidsquire — AI Auction Intelligence
+          </p>
+          <h1 style={{ fontFamily: 'var(--font-barlow-condensed), sans-serif', fontSize: '68px', fontWeight: 700, color: '#fff', lineHeight: 1.0, letterSpacing: '-0.5px', marginBottom: 0 }}>
+            372% Profit Margin.<br />
+            <span style={{ color: '#e8c547' }}>Real Auctions.</span> Real Results.
+          </h1>
+          <div style={{ margin: '26px 0 42px', paddingLeft: '20px', borderLeft: '3px solid rgba(232,197,71,0.4)' }}>
+            <p style={{ fontFamily: 'var(--font-caveat), cursive', fontSize: '24px', fontWeight: 600, color: 'rgba(255,255,255,0.82)', lineHeight: 1.6 }}>
+              We didn&apos;t make that number up. We ran thousands of real auction items through Bidsquire and tracked every single sale. That&apos;s our actual average.
             </p>
           </div>
-          <div className="rounded-2xl border border-white/[0.08] bg-slate-900/70 shadow-2xl shadow-black/40 backdrop-blur-sm">
-            <div className="flex items-center justify-between bg-slate-800/35 px-5 py-4">
-              <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                Sample scan
-              </span>
-              <span className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-emerald-400">
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
-                Active
-              </span>
-            </div>
-            <ul className="divide-y divide-white/[0.06]">
-              <li className="px-5 py-5">
-                <p className="font-semibold text-slate-100">Industrial shelving unit</p>
-                <p className="mt-1 text-xs text-slate-500">County surplus · Online</p>
-                <div className="mt-4 flex flex-wrap items-end gap-4">
-                  <div>
-                    <p className="text-[11px] font-medium uppercase tracking-wide text-slate-500">Bid</p>
-                    <p className="font-mono text-lg font-bold text-slate-200">$95</p>
-                  </div>
-                  <span className="text-slate-600">→</span>
-                  <div>
-                    <p className="text-[11px] font-medium uppercase tracking-wide text-slate-500">Est. value</p>
-                    <p className="font-mono text-lg font-bold text-slate-200">$280–340</p>
-                  </div>
-                  <span className="ml-auto rounded-lg bg-slate-800/90 px-2 py-1 font-mono text-xs font-semibold text-slate-300">
-                    Headroom
-                  </span>
+          <a
+            href="https://onboarding.bidsquire.com/"
+            style={{ display: 'inline-block', background: '#e8c547', color: '#0f1128', fontFamily: 'var(--font-dm-sans), sans-serif', fontSize: '15px', fontWeight: 600, padding: '16px 40px', borderRadius: '8px', textDecoration: 'none', letterSpacing: '0.01em' }}
+          >
+            Try It Free For 30 Days
+          </a>
+          <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.3)', marginTop: '12px', letterSpacing: '0.03em' }}>No credit card required.</p>
+
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.07)', margin: '52px 0 38px' }}></div>
+
+          <p style={{ fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.22)', marginBottom: '18px' }}>Real items. Real margins.</p>
+
+          {/* Cards */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '14px' }}>
+            {heroCards.map((card, index) => (
+              <div key={index} style={{ background: '#161a36', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '14px', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+                <div style={{ width: '100%', height: '160px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0f1128', padding: '10px' }}>
+                  <img
+                    src={heroImages[index]}
+                    alt={card.name}
+                    style={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto', objectFit: 'contain', borderRadius: '4px' }}
+                  />
                 </div>
-              </li>
-              <li className="px-5 py-5">
-                <p className="font-semibold text-slate-100">Commercial freezer</p>
-                <p className="mt-1 text-xs text-slate-500">Restaurant liquidation</p>
-                <div className="mt-4 flex flex-wrap items-end gap-4">
-                  <div>
-                    <p className="text-[11px] font-medium uppercase tracking-wide text-slate-500">Bid</p>
-                    <p className="font-mono text-lg font-bold text-slate-200">$620</p>
+                <div style={{ padding: '14px 14px 16px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                  <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.45, marginBottom: '12px', flex: 1 }}>{card.name}</p>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '7px', marginBottom: '10px' }}>
+                    <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.3)', textDecoration: 'line-through' }}>{card.paid}</span>
+                    <span style={{ fontSize: '10px', color: 'rgba(232,197,71,0.5)' }}>→</span>
+                    <span style={{ fontSize: '14px', color: '#fff', fontWeight: 500 }}>{card.sold}</span>
                   </div>
-                  <span className="text-slate-600">→</span>
-                  <div>
-                    <p className="text-[11px] font-medium uppercase tracking-wide text-slate-500">Est. value</p>
-                    <p className="font-mono text-lg font-bold text-slate-200">$1.1k–1.4k</p>
+                  <div style={{ background: 'rgba(232,197,71,0.1)', border: '1px solid rgba(232,197,71,0.22)', borderRadius: '5px', padding: '6px 10px', display: 'inline-block' }}>
+                    <div style={{ fontFamily: 'var(--font-barlow-condensed), sans-serif', fontSize: '22px', fontWeight: 700, color: '#e8c547', lineHeight: 1, letterSpacing: '0.5px' }}>{card.margin}</div>
+                    <div style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(232,197,71,0.5)', marginTop: '2px' }}>margin</div>
                   </div>
-                  <span className="ml-auto rounded-lg bg-slate-800/90 px-2 py-1 font-mono text-xs font-semibold text-slate-300">
-                    Headroom
-                  </span>
                 </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <TrustBadges />
-
-      <StatsStrip
-        stats={[
-          { value: "2.4M+", label: "Sold records (style metric)", note: "Illustrative" },
-          { value: "328%", label: "Example margin story", note: "Not a promise" },
-          { value: "~30 sec", label: "To start signup", note: "Typical flow" },
-        ]}
-        disclaimer="Figures above are for storytelling on this page only—not audited business metrics. Replace with verified stats when marketing approves."
-      />
-
-      <Section
-        label="How it works"
-        title="Three steps to smarter bidding"
-        subtitle="Same journey we describe on the dedicated page—tight enough to scan from home."
-      >
-        <div className="grid gap-8 md:grid-cols-3">
-          {[
-            {
-              n: "01",
-              t: "Scan",
-              d: "Aggregate listings from the auction channels you care about in one place.",
-            },
-            {
-              n: "02",
-              t: "Compare",
-              d: "See current bids next to estimated value bands so signal stands out from noise.",
-            },
-            {
-              n: "03",
-              t: "Bid smarter",
-              d: "Use credits for deeper lookups when you need more context on edge cases.",
-            },
-          ].map((step) => (
-            <div
-              key={step.n}
-              className="relative rounded-2xl border border-white/[0.08] bg-slate-900/40 p-8 transition hover:border-cyan-400/30 hover:-translate-y-1"
-            >
-              <span className="absolute right-5 top-4 font-mono text-5xl font-bold text-cyan-400/10">{step.n}</span>
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-cyan-400/10 text-cyan-400">
-                <span className="font-mono text-sm font-bold">{step.n}</span>
               </div>
-              <h3 className="text-lg font-bold text-slate-100">{step.t}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-400">{step.d}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-        <p className="mt-10 text-center">
-          <Link href="/how-it-works" className="text-sm font-semibold text-cyan-400 hover:text-cyan-300">
-            Full walkthrough & FAQ →
-          </Link>
-        </p>
-      </Section>
+      </div>
 
-      <Section
-        label="Results"
-        title="Proof without the neon hype"
-        subtitle="We show bid, estimate, and headroom in calm cards—closer to a serious tool than a tabloid flip headline."
-        className="bg-slate-900/20"
-      >
-        <p className="mb-8 max-w-2xl text-slate-400">
-          Sample cards are illustrative; they exist so visitors understand the layout before they sign up—not to promise
-          any specific return.
-        </p>
-        <div className="flex justify-center">
-          <ButtonLink href="/auction-results" variant="outline">
-            View auction results
-          </ButtonLink>
+      {/* How It Works Section */}
+      <div style={{ background: '#0f1128', borderRadius: '20px', marginTop: '16px' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '72px 56px' }}>
+          <p style={{ fontSize: '10px', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#e8c547', opacity: 0.75, marginBottom: '18px' }}>How It Works</p>
+          <h2 style={{ fontFamily: 'var(--font-barlow-condensed), sans-serif', fontSize: '48px', fontWeight: 700, color: '#fff', letterSpacing: '-0.3px', lineHeight: 1.05, marginBottom: '12px' }}>
+            From auction listing to <span style={{ color: '#e8c547' }}>eBay profit</span> — in four steps.
+          </h2>
+          <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, maxWidth: '560px', marginBottom: '56px' }}>
+            Bidsquire does the research so you don&apos;t have to. Know what everything&apos;s worth before you spend a dollar.
+          </p>
+
+          <div style={{ display: 'flex', gap: 0, alignItems: 'flex-start' }}>
+            {steps.map((step, index) => (
+              <div key={index} style={{ flex: 1, minWidth: 0, paddingRight: index < 3 ? 20 : 0 }}>
+                <div style={{ display: 'flex', alignItems: 'center', marginBottom: '24px' }}>
+                  <div
+                    style={{
+                      width: '64px',
+                      height: '64px',
+                      borderRadius: '50%',
+                      border: '1px solid rgba(232,197,71,0.35)',
+                      background: 'rgba(232,197,71,0.06)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontFamily: 'var(--font-barlow-condensed), sans-serif',
+                      fontSize: '22px',
+                      fontWeight: 700,
+                      color: '#e8c547',
+                      flexShrink: 0,
+                    }}
+                  >
+                    {step.number}
+                  </div>
+                  {index < 3 && (
+                    <div
+                      aria-hidden
+                      style={{
+                        flex: 1,
+                        height: '2px',
+                        minWidth: 12,
+                        marginLeft: 10,
+                        alignSelf: 'center',
+                        borderRadius: '1px',
+                        background:
+                          'linear-gradient(90deg, rgba(232,197,71,0.42) 0%, rgba(232,197,71,0.22) 55%, rgba(232,197,71,0.08) 100%)',
+                      }}
+                    />
+                  )}
+                </div>
+                <div style={{ fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#e8c547', opacity: 0.7, marginBottom: '8px' }}>{step.label}</div>
+                <div style={{ fontFamily: 'var(--font-barlow-condensed), sans-serif', fontSize: '26px', fontWeight: 700, color: '#fff', marginBottom: '10px' }}>{step.title}</div>
+                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.52)', lineHeight: 1.65 }}>{step.description}</p>
+                {step.badge && (
+                  <span style={{ display: 'inline-block', marginTop: '12px', background: 'rgba(232,197,71,0.12)', border: '1px solid rgba(232,197,71,0.25)', borderRadius: '4px', padding: '4px 10px', fontSize: '11px', color: '#e8c547', letterSpacing: '0.04em' }}>
+                    {step.badge}
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
-      </Section>
+      </div>
 
-      <CtaBand />
-    </>
+      {/* County Section */}
+      <div style={{
+        maxWidth: '1100px',
+        margin: '16px auto',
+        background: 'linear-gradient(135deg, #0f1128 0%, #141830 100%)',
+        borderRadius: '20px',
+        padding: '64px 56px',
+        border: '1px solid rgba(232,197,71,0.12)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: '48px'
+      }}>
+        <div style={{ flex: 1, maxWidth: '580px' }}>
+          <p style={{ fontSize: '10px', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#e8c547', opacity: 0.75, marginBottom: '18px' }}>Exclusive by County</p>
+          <h2 style={{ fontFamily: 'var(--font-barlow-condensed), sans-serif', fontSize: '44px', fontWeight: 700, color: '#fff', lineHeight: 1.05, letterSpacing: '-0.3px', marginBottom: '16px' }}>
+            One license.<br />
+            One reseller.<br />
+            <span style={{ color: '#e8c547' }}>Your county.</span>
+          </h2>
+          <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.52)', lineHeight: 1.65 }}>
+            Bidsquire sells a single exclusive license per county across the US. <em style={{ color: 'rgba(255,255,255,0.8)', fontStyle: 'normal' }}>When your county is taken, it&apos;s gone.</em> Check now to see if yours is still available.
+          </p>
+          <div style={{ display: 'flex', gap: '10px', marginTop: '20px', flexWrap: 'wrap' }}>
+            <span style={{ background: 'rgba(232,197,71,0.06)', borderColor: 'rgba(232,197,71,0.3)', border: '1px solid rgba(232,197,71,0.3)', borderRadius: '4px', padding: '5px 12px', fontSize: '11px', color: 'rgba(232,197,71,0.7)', letterSpacing: '0.03em' }}>✓ Rural — $99/mo</span>
+            <span style={{ background: 'rgba(232,197,71,0.06)', borderColor: 'rgba(232,197,71,0.3)', border: '1px solid rgba(232,197,71,0.3)', borderRadius: '4px', padding: '5px 12px', fontSize: '11px', color: 'rgba(232,197,71,0.7)', letterSpacing: '0.03em' }}>✓ Suburban — $199/mo</span>
+            <span style={{ background: 'rgba(232,197,71,0.06)', borderColor: 'rgba(232,197,71,0.3)', border: '1px solid rgba(232,197,71,0.3)', borderRadius: '4px', padding: '5px 12px', fontSize: '11px', color: 'rgba(232,197,71,0.7)', letterSpacing: '0.03em' }}>✓ Urban — $299/mo</span>
+          </div>
+        </div>
+        <div style={{ flexShrink: 0, textAlign: 'center' }}>
+          <a
+            href="https://onboarding.bidsquire.com/"
+            style={{ display: 'inline-block', background: '#e8c547', color: '#0f1128', fontFamily: 'var(--font-dm-sans), sans-serif', fontSize: '15px', fontWeight: 600, padding: '16px 40px', borderRadius: '8px', textDecoration: 'none', letterSpacing: '0.01em' }}
+          >
+            Check Your County →
+          </a>
+          <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.3)', marginTop: '12px', letterSpacing: '0.03em' }}>No credit card required to check</p>
+        </div>
+      </div>
+
+      {/* Final CTA */}
+      <div style={{
+        maxWidth: '1100px',
+        margin: '16px auto 0',
+        background: 'linear-gradient(160deg, #1a1e40 0%, #0f1128 60%, #0e1020 100%)',
+        borderRadius: '20px',
+        padding: '96px 56px',
+        textAlign: 'center',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        <div style={{
+          position: 'absolute',
+          top: '-120px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '600px',
+          height: '600px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(232,197,71,0.07) 0%, transparent 70%)',
+          pointerEvents: 'none'
+        }}></div>
+        <p style={{ fontSize: '10px', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#e8c547', opacity: 0.75, marginBottom: '20px', position: 'relative' }}>Zero Risk. All Reward.</p>
+        <h2 style={{ fontFamily: 'var(--font-barlow-condensed), sans-serif', fontSize: '58px', fontWeight: 700, color: '#fff', lineHeight: 1.05, letterSpacing: '-0.4px', marginBottom: '20px', position: 'relative' }}>
+          Ready to bid smart?<br />
+          <span style={{ color: '#e8c547' }}>Your first auction is free.</span>
+        </h2>
+        <p style={{ fontSize: '17px', color: 'rgba(255,255,255,0.5)', maxWidth: '480px', margin: '0 auto 40px', lineHeight: 1.6, position: 'relative' }}>
+          See real sold prices on every item before you spend a dollar. No credit card. No commitment. Just better bids.
+        </p>
+        <a
+          href="https://onboarding.bidsquire.com/"
+          style={{ display: 'inline-block', background: '#e8c547', color: '#0f1128', fontFamily: 'var(--font-dm-sans), sans-serif', fontSize: '17px', fontWeight: 600, padding: '18px 48px', borderRadius: '8px', textDecoration: 'none', position: 'relative' }}
+        >
+          Start Your Free Auction Now
+        </a>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '28px', marginTop: '32px', flexWrap: 'wrap', position: 'relative' }}>
+          <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span style={{ color: 'rgba(232,197,71,0.5)', fontSize: '14px' }}>✓</span> No credit card required
+          </span>
+          <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span style={{ color: 'rgba(232,197,71,0.5)', fontSize: '14px' }}>✓</span> One full auction analyzed free
+          </span>
+          <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span style={{ color: 'rgba(232,197,71,0.5)', fontSize: '14px' }}>✓</span> Cancel anytime
+          </span>
+          <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span style={{ color: 'rgba(232,197,71,0.5)', fontSize: '14px' }}>✓</span> Exclusive county license
+          </span>
+        </div>
+      </div>
+    </div>
   );
 }

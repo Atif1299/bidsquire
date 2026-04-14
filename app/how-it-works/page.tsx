@@ -1,212 +1,277 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { CtaBand } from "@/components/CtaBand";
-import { PageHero } from "@/components/PageHero";
-import { Section } from "@/components/Section";
-import { ButtonLink } from "@/components/ButtonLink";
-import { FaqAccordion } from "@/components/FaqAccordion";
-import { PipelineDiagram } from "@/components/PipelineDiagram";
-
-const SIGNUP_URL = "https://onboarding.bidsquire.com/signup";
 
 export const metadata: Metadata = {
-  title: "How it works",
-  description:
-    "How BidSquire fits into your auction workflow: from listings to value context—plus credits, activation, and sign-in.",
+  title: "How It Works",
+  description: "From auction listing to eBay profit. Bidsquire does the research. You make the profit.",
 };
 
-function IconRadar() {
-  return (
-    <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.75}
-        d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16zM15 11a4 4 0 11-8 0 4 4 0 018 0z"
-      />
-    </svg>
-  );
-}
-
-function IconLayers() {
-  return (
-    <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.75}
-        d="M4 7l8-4 8 4-8 4-8-4zm0 6l8 4 8-4M4 13l8 4 8-4"
-      />
-    </svg>
-  );
-}
-
-function IconTarget() {
-  return (
-    <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.75}
-        d="M12 14a2 2 0 100-4 2 2 0 000 4zm0 0v4m0-12V6m7 7h-4M9 12H5m11.657-5.657l-2.829 2.829M9.172 14.828l-2.829 2.829m0-11.314l2.829 2.829m5.657 5.657l2.829 2.829"
-      />
-    </svg>
-  );
-}
-
-const FAQ = [
-  {
-    q: "What do I get when I sign up?",
-    a: "You start with 500 free credits on the onboarding flow—no credit card required. After you submit the form, check your email to activate and set your password, then sign in to the main app.",
-  },
-  {
-    q: "Where do I sign in after I’m set up?",
-    a: "Use the Sign in button in the header; it points to the BidSquire app login. If you ever lose the link, your activation email includes the path back in.",
-  },
-  {
-    q: "Why credits instead of only a subscription?",
-    a: "Credits let you spend more analysis where it matters—deep lookups on high-stakes lots—without forcing everyone into the same package on day one. Upgrade paths can include more credits or team features as you grow.",
-  },
-  {
-    q: "Is the valuation a guarantee?",
-    a: "No. Estimates are decision support based on available data and models. Always use your own judgment, condition notes, and local market knowledge before you bid.",
-  },
-] as const;
-
 export default function HowItWorksPage() {
-  const stepCards = [
-    {
-      icon: <IconRadar />,
-      title: "We watch the channels you care about",
-      body:
-        "Local online auctions and surplus listings roll into one comparable view—fewer tabs, fewer missed endings.",
-    },
-    {
-      icon: <IconLayers />,
-      title: "Listings become apples-to-apples",
-      body:
-        "Bid, timeline, and item context stay aligned so you are not mentally juggling three PDFs and a spreadsheet.",
-    },
-    {
-      icon: <IconTarget />,
-      title: "You bid with a value band in view",
-      body:
-        "See where the ask sits relative to an estimated range, then use credits when you need a deeper pass on a standout lot.",
-    },
-  ] as const;
-
   return (
-    <>
-      <PageHero>
-        <div className="mx-auto max-w-[1120px] px-6 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">How it works</p>
-          <h1 className="mt-3 text-3xl font-bold tracking-tight text-slate-50 md:text-5xl">
-            From noisy listings to a clear bid decision
-          </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-base text-slate-400 md:text-lg">
-            BidSquire is built for people who already love auctions but hate guessing the number. Here is the flow we
-            optimize for—end to end.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <ButtonLink href={SIGNUP_URL} variant="primary" className="px-6 py-2.5">
-              Get 500 free credits
-            </ButtonLink>
-            <ButtonLink href="/pricing-tiers" variant="outline">
-              Compare plans
-            </ButtonLink>
+    <div style={{ background: '#0a0d1f' }}>
+      {/* Hero */}
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '72px 56px 80px', textAlign: 'center' }}>
+        <p style={{ fontSize: '10px', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#e8c547', opacity: 0.75, marginBottom: '18px' }}>How It Works</p>
+        <h1 style={{ fontFamily: 'var(--font-barlow-condensed), sans-serif', fontSize: '62px', fontWeight: 700, lineHeight: 1.0, letterSpacing: '-0.4px', marginBottom: '20px', color: '#fff' }}>
+          From auction listing<br />to <span style={{ color: '#e8c547' }}>eBay profit.</span>
+        </h1>
+        <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.55)', maxWidth: '580px', margin: '0 auto 40px', lineHeight: 1.65 }}>
+          Bidsquire does the research. You make the profit. Know what everything is actually <em>selling for</em> — not some mythical at-auction price, but real-world quick-flip sales. Know before you spend a dollar, or a minute.
+        </p>
+        <a href="https://onboarding.bidsquire.com/" style={{ display: 'inline-block', background: '#e8c547', color: '#0f1128', fontFamily: 'var(--font-dm-sans), sans-serif', fontSize: '15px', fontWeight: 600, padding: '15px 40px', borderRadius: '8px', textDecoration: 'none' }}>
+          Start Your Free Auction
+        </a>
+        <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.3)', marginTop: '12px', letterSpacing: '0.03em' }}>No credit card required</p>
+      </div>
+
+      {/* Step 1 */}
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 56px 80px' }}>
+        <div style={{ marginBottom: '32px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '18px' }}>
+            <div style={{ width: '52px', height: '52px', borderRadius: '50%', border: '1px solid rgba(232,197,71,0.4)', background: 'rgba(232,197,71,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-barlow-condensed), sans-serif', fontSize: '20px', fontWeight: 700, color: '#e8c547', flexShrink: 0 }}>1</div>
+            <span style={{ fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#e8c547', opacity: 0.7 }}>Scout</span>
+          </div>
+          <h2 style={{ fontFamily: 'var(--font-barlow-condensed), sans-serif', fontSize: '46px', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.3px', color: '#fff' }}>
+            Paste any <span style={{ color: '#e8c547' }}>HiBid auction URL.</span> We do the rest.
+          </h2>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 400px', gap: '48px', alignItems: 'start' }}>
+          <div>
+            <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.75, marginBottom: '14px' }}>Find an upcoming auction on HiBid.com, copy the URL, and paste it into Bidsquire. That&apos;s the entire job on your end.</p>
+            <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.75, marginBottom: '14px' }}>Our AI immediately goes to work — scanning <strong style={{ color: 'rgba(255,255,255,0.85)', fontWeight: 500 }}>every single item</strong> in that auction. Photos, lot descriptions, condition notes, titles. Every item. Automatically. No clicking through listings one by one.</p>
+            <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.75, marginBottom: '14px' }}>Most auctions are fully analyzed in minutes.</p>
+            <span style={{ display: 'inline-block', background: 'rgba(232,197,71,0.1)', border: '1px solid rgba(232,197,71,0.25)', borderRadius: '5px', padding: '6px 14px', fontSize: '12px', color: '#e8c547', letterSpacing: '0.04em', marginTop: '8px' }}>Works on any HiBid auction, anywhere in the US</span>
+          </div>
+          <div style={{ background: '#0f1128', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '14px', padding: '22px' }}>
+            <div style={{ background: '#0a0d1f', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '7px', padding: '11px 14px', display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
+              <span style={{ fontSize: '13px' }}>🔗</span>
+              <span style={{ fontSize: '11px', color: 'rgba(255,255,255,0.3)', fontFamily: 'monospace', flex: 1, overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>hibid.com/auction/183920/miami-estate-sale-lot-482</span>
+              <span style={{ background: '#e8c547', color: '#0f1128', fontSize: '11px', fontWeight: 600, padding: '5px 12px', borderRadius: '4px', whiteSpace: 'nowrap' }}>Analyze</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {[
+                { name: 'Lot 12 — Victorian writing desk' },
+                { name: 'Lot 13 — Vintage Coca-Cola tin signs (3)' },
+                { name: 'Lot 14 — Antique oil lamp, brass' },
+                { name: 'Lot 15 — Sterling silver flatware set' },
+                { name: 'Lot 16 — 1968 Sports Illustrated lot' }
+              ].map((item, i) => (
+                <div key={i} style={{ background: '#161a36', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '5px', padding: '8px 12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)' }}>{item.name}</span>
+                  <span style={{ fontSize: '11px', color: '#e8c547' }}>✓ Analyzed</span>
+                </div>
+              ))}
+            </div>
+            <p style={{ marginTop: '10px', fontSize: '10px', color: 'rgba(255,255,255,0.2)', textAlign: 'center', letterSpacing: '0.06em', textTransform: 'uppercase' }}>247 items analyzed · 3 min 12 sec</p>
           </div>
         </div>
-      </PageHero>
+      </div>
 
-      <section className="py-14 md:py-20">
-        <div className="mx-auto max-w-[1120px] px-6">
-          <p className="mb-6 text-center text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-            At a glance
-          </p>
-          <PipelineDiagram />
+      {/* Divider */}
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 56px 60px', display: 'flex', alignItems: 'center', gap: '20px' }}>
+        <div style={{ flex: 1, borderTop: '1px solid rgba(255,255,255,0.06)' }}></div>
+        <span style={{ fontSize: '18px', opacity: 0.3 }}>↓</span>
+        <div style={{ flex: 1, borderTop: '1px solid rgba(255,255,255,0.06)' }}></div>
+      </div>
+
+      {/* Step 2 */}
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 56px 80px' }}>
+        <div style={{ marginBottom: '32px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '18px' }}>
+            <div style={{ width: '52px', height: '52px', borderRadius: '50%', border: '1px solid rgba(232,197,71,0.4)', background: 'rgba(232,197,71,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-barlow-condensed), sans-serif', fontSize: '20px', fontWeight: 700, color: '#e8c547', flexShrink: 0 }}>2</div>
+            <span style={{ fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#e8c547', opacity: 0.7 }}>Bid Smart</span>
+          </div>
+          <h2 style={{ fontFamily: 'var(--font-barlow-condensed), sans-serif', fontSize: '46px', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.3px', color: '#fff' }}>
+            See <span style={{ color: '#e8c547' }}>real sold prices</span> before you click Bid.
+          </h2>
         </div>
-      </section>
+        <div style={{ display: 'grid', gridTemplateColumns: '400px 1fr', gap: '48px', alignItems: 'start' }}>
+          <div style={{ background: '#0f1128', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '14px', padding: '22px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+              <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.65)', fontWeight: 500 }}>Lot 13 — Coca-Cola tin signs</span>
+              <span style={{ fontSize: '10px', background: 'rgba(232,197,71,0.12)', border: '1px solid rgba(232,197,71,0.25)', color: '#e8c547', padding: '3px 8px', borderRadius: '3px' }}>eBay COMPS</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', marginBottom: '12px' }}>
+              {[
+                { title: 'Coca-Cola tin sign 1950s oval — Mar 2025', price: '$87' },
+                { title: 'Vintage Coke tin sign lot x3 — Feb 2025', price: '$142' },
+                { title: 'Antique soda tin sign embossed — Mar 2025', price: '$64' },
+                { title: '1940s Coca-Cola button sign — Jan 2025', price: '$110' }
+              ].map((item, i) => (
+                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '7px 10px', background: '#0a0d1f', borderRadius: '5px' }}>
+                  <span style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)' }}>{item.title}</span>
+                  <span style={{ fontSize: '12px', color: '#fff', fontWeight: 500 }}>{item.price}</span>
+                </div>
+              ))}
+            </div>
+            <div style={{ background: 'rgba(232,197,71,0.08)', border: '1px solid rgba(232,197,71,0.2)', borderRadius: '6px', padding: '10px 14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span style={{ fontSize: '11px', color: 'rgba(232,197,71,0.7)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>Estimated resale range</span>
+              <span style={{ fontFamily: 'var(--font-barlow-condensed), sans-serif', fontSize: '22px', fontWeight: 700, color: '#e8c547' }}>$64 — $142</span>
+            </div>
+          </div>
+          <div>
+            <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.75, marginBottom: '14px' }}>For every item in the auction, Bidsquire shows you what identical or similar items have <strong style={{ color: 'rgba(255,255,255,0.85)', fontWeight: 500 }}>actually sold for on eBay</strong> — not estimates, not guesses, not algorithmically inflated valuations.</p>
+            <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.75, marginBottom: '14px' }}>Real listings. Real buyers. Real money. Pulled from recent eBay sold data so you know exactly what the market is paying right now.</p>
+            <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.75, marginBottom: '14px' }}>You&apos;ll know your ceiling before you bid a dollar. No more guessing. No more winning something and wondering if you overpaid.</p>
+            <span style={{ display: 'inline-block', background: 'rgba(232,197,71,0.1)', border: '1px solid rgba(232,197,71,0.25)', borderRadius: '5px', padding: '6px 14px', fontSize: '12px', color: '#e8c547', letterSpacing: '0.04em', marginTop: '8px' }}>Powered by live eBay comparable sales</span>
+          </div>
+        </div>
+      </div>
 
-      <Section
-        label="Three beats"
-        title="What you feel in the product"
-        subtitle="Plain language, no jargon—mapped to what resellers actually do week to week."
-      >
-        <div className="grid gap-8 md:grid-cols-3">
-          {stepCards.map((step) => (
-            <div
-              key={step.title}
-              className="rounded-2xl border border-white/[0.08] bg-slate-900/40 p-8 transition hover:border-cyan-400/30 hover:-translate-y-0.5"
-            >
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-cyan-400/10 text-cyan-400">
-                {step.icon}
+      {/* Divider */}
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 56px 60px', display: 'flex', alignItems: 'center', gap: '20px' }}>
+        <div style={{ flex: 1, borderTop: '1px solid rgba(255,255,255,0.06)' }}></div>
+        <span style={{ fontSize: '18px', opacity: 0.3 }}>↓</span>
+        <div style={{ flex: 1, borderTop: '1px solid rgba(255,255,255,0.06)' }}></div>
+      </div>
+
+      {/* Step 3 */}
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 56px 80px' }}>
+        <div style={{ marginBottom: '32px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '18px' }}>
+            <div style={{ width: '52px', height: '52px', borderRadius: '50%', border: '1px solid rgba(232,197,71,0.4)', background: 'rgba(232,197,71,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-barlow-condensed), sans-serif', fontSize: '20px', fontWeight: 700, color: '#e8c547', flexShrink: 0 }}>3</div>
+            <span style={{ fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#e8c547', opacity: 0.7 }}>Win &amp; Refine</span>
+          </div>
+          <h2 style={{ fontFamily: 'var(--font-barlow-condensed), sans-serif', fontSize: '46px', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.3px', color: '#fff' }}>
+            Won something? <span style={{ color: '#e8c547' }}>Now get the real number.</span>
+          </h2>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 400px', gap: '48px', alignItems: 'start' }}>
+          <div>
+            <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.75, marginBottom: '14px' }}>Auction photos are often low resolution, poorly lit, or shot from too far away. That&apos;s why Bidsquire&apos;s first pass gives you a range, not a pinpoint.</p>
+            <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.75, marginBottom: '14px' }}>Once you win and have the item in hand, upload your own close-up photos — especially <strong style={{ color: 'rgba(255,255,255,0.85)', fontWeight: 500 }}>maker&apos;s marks, signatures, stamps, hallmarks, and condition details</strong>. Bidsquire re-analyzes with that clarity.</p>
+            <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.75, marginBottom: '14px' }}>A hidden signature or rare maker&apos;s mark can turn a $20 win into a $2,000 sale. You won&apos;t know until you look — and now you&apos;ll know what to look for.</p>
+            <span style={{ display: 'inline-block', background: 'rgba(232,197,71,0.1)', border: '1px solid rgba(232,197,71,0.25)', borderRadius: '5px', padding: '6px 14px', fontSize: '12px', color: '#e8c547', letterSpacing: '0.04em', marginTop: '8px' }}>A hidden mark can 10× the price</span>
+          </div>
+          <div style={{ background: '#0f1128', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '14px', padding: '22px' }}>
+            <div style={{ border: '2px dashed rgba(232,197,71,0.3)', borderRadius: '10px', padding: '22px', textAlign: 'center', marginBottom: '14px' }}>
+              <div style={{ fontSize: '28px', marginBottom: '8px' }}>📸</div>
+              <strong style={{ color: 'rgba(232,197,71,0.7)', display: 'block', fontSize: '12px', marginBottom: '5px' }}>Upload your close-up photos</strong>
+              <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.3)', lineHeight: 1.5 }}>Add as many angles as you need — the more detail, the better the analysis.</p>
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7px' }}>
+              {['Maker\'s mark ✓', 'Signature ✓', 'Condition ✓', 'Hallmark ✓'].map((tag, i) => (
+                <span key={i} style={{ background: 'rgba(232,197,71,0.06)', border: '1px solid rgba(232,197,71,0.3)', borderRadius: '4px', padding: '4px 9px', fontSize: '11px', color: '#e8c547' }}>{tag}</span>
+              ))}
+              {['Date stamp', 'Pattern name', 'Country of origin'].map((tag, i) => (
+                <span key={i} style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '4px', padding: '4px 9px', fontSize: '11px', color: 'rgba(255,255,255,0.4)' }}>{tag}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 56px 60px', display: 'flex', alignItems: 'center', gap: '20px' }}>
+        <div style={{ flex: 1, borderTop: '1px solid rgba(255,255,255,0.06)' }}></div>
+        <span style={{ fontSize: '18px', opacity: 0.3 }}>↓</span>
+        <div style={{ flex: 1, borderTop: '1px solid rgba(255,255,255,0.06)' }}></div>
+      </div>
+
+      {/* Step 4 */}
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 56px 80px' }}>
+        <div style={{ marginBottom: '32px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '18px' }}>
+            <div style={{ width: '52px', height: '52px', borderRadius: '50%', border: '1px solid rgba(232,197,71,0.4)', background: 'rgba(232,197,71,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-barlow-condensed), sans-serif', fontSize: '20px', fontWeight: 700, color: '#e8c547', flexShrink: 0 }}>4</div>
+            <span style={{ fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#e8c547', opacity: 0.7 }}>List &amp; Profit</span>
+          </div>
+          <h2 style={{ fontFamily: 'var(--font-barlow-condensed), sans-serif', fontSize: '46px', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.3px', color: '#fff' }}>
+            Price it right on <span style={{ color: '#e8c547' }}>eBay or Etsy.</span> First time.
+          </h2>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: '400px 1fr', gap: '48px', alignItems: 'start' }}>
+          <div style={{ background: '#0f1128', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '14px', padding: '22px' }}>
+            <div style={{ background: '#0a0d1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '7px', padding: '14px', marginBottom: '8px' }}>
+              <div style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(255,255,255,0.3)', marginBottom: '7px' }}>eBay listing recommendation</div>
+              <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.75)', marginBottom: '10px', lineHeight: 1.4 }}>Vintage Coca-Cola Tin Sign Lot x3 — 1940s–1950s Original</div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontFamily: 'var(--font-barlow-condensed), sans-serif', fontSize: '26px', fontWeight: 700, color: '#e8c547' }}>$124</span>
+                <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.3)', textAlign: 'right', lineHeight: 1.4 }}>Based on 4 recent<br />eBay sold comps</span>
               </div>
-              <h3 className="text-lg font-bold text-slate-100">{step.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-slate-400">{step.body}</p>
+            </div>
+            <div style={{ background: '#0a0d1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '7px', padding: '14px', marginBottom: '8px' }}>
+              <div style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(255,255,255,0.3)', marginBottom: '7px' }}>Etsy listing recommendation</div>
+              <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.75)', marginBottom: '10px', lineHeight: 1.4 }}>Antique Coca-Cola Advertising Signs — Vintage Soda Collectibles Set</div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontFamily: 'var(--font-barlow-condensed), sans-serif', fontSize: '26px', fontWeight: 700, color: '#e8c547' }}>$138</span>
+                <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.3)', textAlign: 'right', lineHeight: 1.4 }}>Etsy vintage market<br />commands premium</span>
+              </div>
+            </div>
+            <p style={{ fontSize: '10px', color: 'rgba(255,255,255,0.2)', textAlign: 'center', letterSpacing: '0.04em', marginTop: '6px' }}>Paid $18 at auction · Recommended list: $124–$138</p>
+          </div>
+          <div>
+            <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.75, marginBottom: '14px' }}>The most common mistake resellers make isn&apos;t buying the wrong thing — it&apos;s pricing it wrong. Too high and it sits. Too low and you leave money behind.</p>
+            <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.75, marginBottom: '14px' }}>Bidsquire gives you <strong style={{ color: 'rgba(255,255,255,0.85)', fontWeight: 500 }}>precise listing prices based on recent sold comps</strong> — not what people are asking, but what buyers have actually paid. The difference matters.</p>
+            <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.75, marginBottom: '14px' }}>List confidently, move inventory fast, and repeat. That&apos;s the whole game.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Who Uses Bidsquire */}
+      <div style={{ background: '#0f1128', padding: '80px 0' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 56px' }}>
+          <p style={{ fontSize: '10px', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#e8c547', opacity: 0.75, marginBottom: '18px' }}>Who Uses Bidsquire</p>
+          <h2 style={{ fontFamily: 'var(--font-barlow-condensed), sans-serif', fontSize: '44px', fontWeight: 700, letterSpacing: '-0.2px', marginBottom: '36px', color: '#fff' }}>
+            Built for resellers who want <span style={{ color: '#e8c547' }}>every possible edge.</span>
+          </h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
+            {[
+              { icon: '📦', title: 'eBay & Etsy Resellers', desc: 'You already know how to list and ship. Bidsquire gives you the intelligence to buy smarter and price right the first time.' },
+              { icon: '🏠', title: 'Estate Sale & Auction Regulars', desc: 'You\'ve been going for years. Now you go with data. Know what\'s worth bidding on before the auctioneer opens the floor.' },
+              { icon: '🔄', title: 'Side Hustle Flippers', desc: 'You\'re building something real. Bidsquire helps you build it faster by cutting the guesswork on every single lot.' },
+              { icon: '🏪', title: 'Antique Dealers', desc: 'You know your categories. Bidsquire knows the current market. Together you stop leaving money on the table.' },
+              { icon: '📚', title: 'Collectors', desc: 'You buy what you love — but you want to know what it\'s worth. Bidsquire tells you before you bid, not after.' },
+              { icon: '🚛', title: 'Storage Unit Buyers', desc: 'Analyze the items you can see through the door before you commit to the unit.' }
+            ].map((card, i) => (
+              <div key={i} style={{ background: '#161a36', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '12px', padding: '24px 26px' }}>
+                <div style={{ fontSize: '26px', marginBottom: '12px' }}>{card.icon}</div>
+                <strong style={{ fontSize: '15px', color: '#fff', display: 'block', marginBottom: '8px' }}>{card.title}</strong>
+                <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.45)', lineHeight: 1.6 }}>{card.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* FAQ */}
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '80px 56px' }}>
+        <p style={{ fontSize: '10px', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#e8c547', opacity: 0.75, marginBottom: '18px' }}>Common Questions</p>
+        <h2 style={{ fontFamily: 'var(--font-barlow-condensed), sans-serif', fontSize: '44px', fontWeight: 700, letterSpacing: '-0.2px', marginBottom: '36px', color: '#fff' }}>
+          Everything you want <span style={{ color: '#e8c547' }}>to know.</span>
+        </h2>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+          {[
+            { q: 'Does it work on all HiBid auctions?', a: 'Yes. Any public HiBid auction in the US. Paste the URL and Bidsquire analyzes every item in that auction regardless of category or location.' },
+            { q: 'How current is the eBay data?', a: <>Bidsquire pulls from recent eBay <strong style={{ color: 'rgba(255,255,255,0.8)', fontWeight: 500 }}>sold listings</strong> — actual completed sales, not asking prices. The data reflects what the market is paying right now.</> },
+            { q: 'What if the auction photo quality is poor?', a: 'That\'s exactly what Step 3 is for. The first pass gives you a range. Once you win and photograph the item yourself, Bidsquire re-analyzes to pinpoint the value.' },
+            { q: 'How long does the analysis take?', a: 'Most auctions are fully analyzed within a few minutes. Larger auctions may take slightly longer, but results start appearing as each lot is processed.' },
+            { q: 'What\'s included in the free trial?', a: 'One complete auction analyzed in full — every item, every comp, every recommendation. No credit card. No commitment.' },
+            { q: 'Can I use it for categories I don\'t know?', a: <><strong style={{ color: 'rgba(255,255,255,0.8)', fontWeight: 500 }}>That&apos;s exactly the point.</strong> You already know how to hustle. Bidsquire gives you the market intelligence to buy smarter, price right, and move faster than anyone else in your county.</> }
+          ].map((faq, i) => (
+            <div key={i} style={{ padding: '22px 24px', background: '#0f1128', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '12px' }}>
+              <strong style={{ fontSize: '14px', color: '#fff', display: 'block', marginBottom: '8px' }}>{faq.q}</strong>
+              <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.65 }}>{faq.a}</p>
             </div>
           ))}
         </div>
-      </Section>
+      </div>
 
-      <section className="bg-slate-900/20 py-16 md:py-24">
-        <div className="mx-auto max-w-[1120px] px-6">
-          <h2 className="text-center text-2xl font-bold text-slate-50 md:text-3xl">Under the hood</h2>
-          <p className="mx-auto mt-3 max-w-xl text-center text-slate-400">
-            A slightly more detailed pipeline—same story as above, with product-shaped wording.
+      {/* Final CTA */}
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 56px 80px' }}>
+        <div style={{ background: 'linear-gradient(160deg, #1a1e40 0%, #0f1128 60%, #0e1020 100%)', borderRadius: '20px', padding: '80px 56px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', top: '-100px', left: '50%', transform: 'translateX(-50%)', width: '500px', height: '500px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(232,197,71,0.07) 0%, transparent 70%)', pointerEvents: 'none' }}></div>
+          <p style={{ fontSize: '10px', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#e8c547', opacity: 0.75, marginBottom: '18px', position: 'relative' }}>Try It Free</p>
+          <h2 style={{ fontFamily: 'var(--font-barlow-condensed), sans-serif', fontSize: '52px', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.3px', marginBottom: '16px', color: '#fff', position: 'relative' }}>
+            Your first auction<br /><span style={{ color: '#e8c547' }}>is on us.</span>
+          </h2>
+          <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.5)', maxWidth: '480px', margin: '0 auto 36px', lineHeight: 1.65, position: 'relative' }}>
+            See real sold prices on every item before you spend a dollar. No credit card. No commitment. Just better bids.
           </p>
-          <ol className="mx-auto mt-12 max-w-2xl space-y-8 border-l border-white/[0.08] pl-8">
-            {[
-              {
-                title: "Ingest",
-                body: "Bring in the auction sources and formats you already follow—estates, surplus, regional houses, and more.",
-              },
-              {
-                title: "Enrich",
-                body: "Normalize fields so current bid, closing time, and item details stay side by side without manual cleanup.",
-              },
-              {
-                title: "Estimate",
-                body: "Surface value bands so you can sanity-check the ask fast. Not a guarantee—a head start on research.",
-              },
-              {
-                title: "Act",
-                body: "Spend credits on deeper analysis when a lot deserves it; export or note what you need for your own workflow.",
-              },
-            ].map((item, i) => (
-              <li key={item.title} className="relative">
-                <span className="absolute -left-[33px] top-0.5 flex h-6 w-6 items-center justify-center rounded-full border border-cyan-400/30 bg-[#0a0e17] font-mono text-xs font-bold text-cyan-400">
-                  {i + 1}
-                </span>
-                <h3 className="text-lg font-bold text-slate-100">{item.title}</h3>
-                <p className="mt-2 text-slate-400">{item.body}</p>
-              </li>
-            ))}
-          </ol>
+          <a href="https://onboarding.bidsquire.com/" style={{ display: 'inline-block', background: '#e8c547', color: '#0f1128', fontFamily: 'var(--font-dm-sans), sans-serif', fontSize: '15px', fontWeight: 600, padding: '15px 40px', borderRadius: '8px', textDecoration: 'none', position: 'relative' }}>
+            Start Your Free Auction Now
+          </a>
+          <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.3)', marginTop: '12px', letterSpacing: '0.03em', position: 'relative' }}>No credit card required · One full auction analyzed free · Cancel anytime</p>
         </div>
-      </section>
-
-      <Section
-        label="Credits"
-        title="Why we meter with credits"
-        subtitle="You should not have to pick the wrong subscription shape before you know how hard you will run the tool."
-      >
-        <div className="mx-auto max-w-2xl rounded-2xl border border-white/[0.08] bg-slate-900/45 p-8">
-          <p className="text-slate-300">
-            Credits keep heavy lookups honest: you use more when a lot is worth the extra look, and less when you are
-            skimming. Many teams pair a starter allocation with upgrades as volume grows—see{" "}
-            <Link href="/pricing-tiers" className="font-semibold text-cyan-400 hover:text-cyan-300">
-              pricing tiers
-            </Link>{" "}
-            for how we group features (without locking in dollar amounts until your team confirms them).
-          </p>
-        </div>
-      </Section>
-
-      <section className="py-16 md:py-24">
-        <FaqAccordion items={[...FAQ]} />
-      </section>
-
-      <CtaBand />
-    </>
+      </div>
+    </div>
   );
 }
